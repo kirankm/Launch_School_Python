@@ -26,11 +26,13 @@ def get_number(number_type = None):
     while True:
         num_str = get_number_input(number_type)
         cleaned_num_str = clean_num_str(num_str)
-        num_str = is_num_str(cleaned_num_str)
-        if num_str:
-            return process_number(num_str)
+        valid_num_str = is_num_str(cleaned_num_str)
+        if valid_num_str:
+            prompt(f"WARNING!!! REMOVING PUNCTUATIONS FROM INPUT\n") \
+                if cleaned_num_str != num_str else None
+            return process_number(valid_num_str)
         else:
-            prompt("Hmm... that doesn't look like a valid number.")
+            prompt("Hmm... that doesn't look like a valid number.\n")
 
 def get_number_input(number_type):
     if number_type is None:

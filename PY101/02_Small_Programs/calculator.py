@@ -28,11 +28,10 @@ def get_number(number_type = None):
         cleaned_num_str = clean_num_str(num_str)
         valid_num_str = is_num_str(cleaned_num_str)
         if valid_num_str:
-            prompt(f"WARNING!!! REMOVING PUNCTUATIONS FROM INPUT\n") \
-                if cleaned_num_str != num_str else None
+            if cleaned_num_str != num_str:
+                prompt("WARNING!!! REMOVING PUNCTUATIONS FROM INPUT\n")
             return process_number(valid_num_str)
-        else:
-            prompt("Hmm... that doesn't look like a valid number.\n")
+        prompt("Hmm... that doesn't look like a valid number.\n")
 
 def get_number_input(number_type):
     if number_type is None:
@@ -67,8 +66,7 @@ def get_operation():
         operation_input = input()
         if operation_input in OPERATOR_DICT:
             return operation_input
-        else:
-            prompt("You must choose 1, 2, 3, or 4")
+        prompt("You must choose 1, 2, 3, or 4")
 
 def get_operation_func(operator, operator_dict):
     return operator_dict.get(operator, None)

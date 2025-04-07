@@ -93,7 +93,8 @@ def divide(a, b):
 
 ## Display Output
 def display_output(answer, decimal_places = DECIMAL_PLACES):
-    prompt(f'{COMMENTS['result']} {round(answer, decimal_places)}')
+    if result:
+        prompt(f'{COMMENTS['result']} {round(answer, decimal_places)}')
 
 ## Should Continue?
 def get_continue_confirmation():

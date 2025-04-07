@@ -23,12 +23,14 @@ def introduce():
 
 ## Dealing With Numbers
 def get_number(number_type = None):
-    num_str = get_number_input(number_type)
-    clean_num = clean_num_str(num_str)
-    verified_num = verify_num(clean_num)
-    if verified_num:
-        return process_number(verified_num)
-    return verified_num
+    while True:
+        num_str = get_number_input(number_type)
+        cleaned_num_str = clean_num_str(num_str)
+        num_str = is_num_str(cleaned_num_str)
+        if num_str:
+            return process_number(num_str)
+        else:
+            prompt("Hmm... that doesn't look like a valid number.")
 
 def get_number_input(number_type):
     if number_type is None:
@@ -51,7 +53,7 @@ def remove_punc(num_str):
         num_str = num_str.replace(punc,'')
     return num_str
 
-def verify_num(num_str):
+def is_num_str(num_str):
     return num_str.isdigit() and num_str
 
 ## Dealing With Operator
@@ -59,7 +61,12 @@ def get_operation():
     comment = 'What operation would you like to perform?\n\
     1) Add 2) Subtract 3) Multiply 4) Divide: '
     prompt(comment)
-    return input()
+    while True:
+        operation_input = input()
+        if operation_input in OPERATOR_DICT:
+            return operation_input
+        else:
+            prompt("You must choose 1, 2, 3, or 4")
 
 def get_operation_func(operator, operator_dict):
     return operator_dict.get(operator, None)

@@ -1,0 +1,32 @@
+{
+    "en": {
+        "welcome": "Welcome to the Calculator",
+        "capabilities": "I can Add, Subtract, Multiply, Divide",
+        "generic_number_prompt":"Give me a number",
+        "first_number_prompt": "Give me the first number: ",
+        "second_number_prompt": "Give me the second number: ",
+        "invalid_number": "Hmm... that doesn't look like a valid number.",
+        "punctuation_warning": "WARNING!!! REMOVING PUNCTUATIONS FROM INPUT",
+        "operation_prompt": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide: ",
+        "invalid_operation": "You must choose 1, 2, 3, or 4",
+        "division_by_zero": "Cannot Do Division with 0",
+        "result": "The result is",
+        "continue_prompt": "Do you want to continue? Say Yes(y) or No(n)",
+        "exit_message": "Exiting the Calculator. Until we meet again!!"
+    },
+    "es": {
+        "welcome": "Bienvenido a la Calculadora",
+        "capabilities": "Puedo Sumar, Restar, Multiplicar, Dividir",
+        "generic_number_prompt": "Dame un número",
+        "first_number_prompt": "Dame el primer número: ",
+        "second_number_prompt": "Dame el segundo número: ",
+        "invalid_number": "Hmm... eso no parece un número válido.",
+        "punctuation_warning": "¡¡¡ADVERTENCIA!!! ELIMINANDO PUNTUACIONES DE LA ENTRADA",
+        "operation_prompt": "¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir: ",
+        "invalid_operation": "Debes elegir 1, 2, 3, o 4",
+        "division_by_zero": "No se puede hacer división entre 0",
+        "result": "El resultado es",
+        "continue_prompt": "¿Quieres continuar? Di Sí(s) o No(n)",
+        "exit_message": "Saliendo de la Calculadora. ¡¡Hasta que nos encontremos de nuevo!!"
+    }
+}

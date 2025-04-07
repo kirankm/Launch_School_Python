@@ -1,17 +1,10 @@
-################
-#  X Introduction
-# X Get First Number
-    # Process First Number
-# X Get Second Number
-    # Process Second Number
-# Get Operation
-    # Process Operation
-# Perform Calculation
-# Display Result
-
-#################
 # Import Statements
 import subprocess
+import json
+import os
+
+# Settings
+lang = 'en'
 
 # Functions
 
@@ -20,12 +13,12 @@ def prompt(message):
     print(f"==> {message}")
 
 def clear_screen():
-    subprocess.run('clear', shell=True)
+    subprocess.run('clear', shell=True, check = True)
 
 ## Introduction
 def introduce():
-    prompt("Welcome to the Calculator")
-    prompt("I can Add, Subtract, Multiply, Divide\n")
+    prompt(COMMENTS['welcome'])
+    prompt(COMMENTS['capabilities'])
 
 ## Dealing With Numbers
 def get_number(number_type = None):
@@ -35,15 +28,15 @@ def get_number(number_type = None):
         valid_num_str = is_num_str(cleaned_num_str)
         if valid_num_str:
             if cleaned_num_str != num_str:
-                prompt("WARNING!!! REMOVING PUNCTUATIONS FROM INPUT\n")
+                prompt(COMMENTS['punctuation_warning'])
             return process_number(valid_num_str)
-        prompt("Hmm... that doesn't look like a valid number.\n")
+        prompt(COMMENTS['invalid_number'])
 
 def get_number_input(number_type):
     if number_type is None:
-        comment = "Give me a Number: "
+        comment = COMMENTS["generic_number_prompt"]
     else:
-        comment = f"Give me the {number_type} number: "
+        comment = COMMENTS[f'{number_type}_number_prompt']
     prompt(comment)
     return input()
 
@@ -65,14 +58,13 @@ def is_num_str(num_str):
 
 ## Dealing With Operator
 def get_operation():
-    comment = 'What operation would you like to perform?\n\
-    1) Add 2) Subtract 3) Multiply 4) Divide: '
+    comment = COMMENTS['operation_prompt']
     prompt(comment)
     while True:
         operation_input = input()
         if operation_input in OPERATOR_DICT:
             return operation_input
-        prompt("You must choose 1, 2, 3, or 4")
+        prompt(COMMENTS['invalid_operation'])
 
 def get_operation_func(operator, operator_dict):
     return operator_dict.get(operator, None)
@@ -89,13 +81,13 @@ def multiply(a, b):
 
 def divide(a, b):
     if b == 0:
-        prompt("Cannot Do Division with 0")
+        prompt(COMMENTS['division_by_zero'])
         return None
     return a / b
 
 ## Should Continue?
 def get_continue_confirmation():
-    prompt("Do you want to continue? Say Yes(y) or No(n)")
+    prompt(COMMENTS["continue_prompt"])
     return input()
 
 # Variables
@@ -106,7 +98,14 @@ OPERATOR_DICT = {
     '4': divide
 }
 
+# Load Comments
+script_dir = os.path.dirname(os.path.abspath(__file__))
+COMMENTS_FILE_PATH = os.path.join(script_dir, 'calc_comments.json')
 
+with open(COMMENTS_FILE_PATH,'r') as f:
+    COMMENTS_FILE = json.load(f)
+
+COMMENTS = COMMENTS_FILE[lang]
 ###############################
 # Program Flow
 introduce()
@@ -119,12 +118,11 @@ while True:
 
     result = operation_func(first, second)
 
-    prompt(f'The result is {result}')
+    prompt(f'{COMMENTS['result']} {result}')
 
     should_continue = get_continue_confirmation()
     if should_continue.lower() in ['n', 'no']:
         break
-    else:
-        clear_screen()
+    clear_screen()
 
-prompt("Exiting the Calculator. Until we meet again!!")
+prompt(COMMENTS['exit_message'])

@@ -18,7 +18,7 @@ def prompt(message):
 
 ## Introduction
 def introduce():
-    prompt("Welcome to the Calculator") 
+    prompt("Welcome to the Calculator")
     prompt("I can Add, Subtract, Multiply, Divide\n")
 
 ## Dealing With Numbers
@@ -27,8 +27,8 @@ def get_number(number_type = None):
     clean_num = clean_num_str(num_str)
     verified_num = verify_num(clean_num)
     if verified_num:
-        final_num = process_number(verified_num)
-    return verified_num and final_num
+        return process_number(verified_num)
+    return verified_num
 
 def get_number_input(number_type):
     if number_type is None:
@@ -55,16 +55,14 @@ def verify_num(num_str):
     return num_str.isdigit() and num_str
 
 ## Dealing With Operator
-def get_operator_input():
+def get_operation():
     comment = 'What operation would you like to perform?\n\
     1) Add 2) Subtract 3) Multiply 4) Divide: '
     prompt(comment)
     return input()
 
-def get_operation(operator, operator_dict):
-    for val in OPERATOR_DICT:
-        if operator in val:
-            return operator_dict[val]
+def get_operation_func(operator, operator_dict):
+    return operator_dict.get(operator, None)
 
 ## Different Operations
 def add(a, b):
@@ -82,10 +80,10 @@ def divide(a, b):
 
 # Variables
 OPERATOR_DICT = {
-    '1) Add': add,
-    '2) Subtract' : subtract,
-    '3) Multiply' : multiply,
-    '4) Divide': divide
+    '1': add,
+    '2' : subtract,
+    '3' : multiply,
+    '4': divide
 }
 
 
@@ -94,13 +92,8 @@ OPERATOR_DICT = {
 introduce()
 first = get_number("first")
 second = get_number("second")
-operator = get_operator_input()
-operation =get_operation(operator, OPERATOR_DICT)
-result = operation(first, second)
-
-
-# print(f'The numbers are {first}, {second}')
-# print(f'The operator is {operator}')
-# print(f'The operation is {operation}')
+operation = get_operation()
+operation_func =get_operation_func(operation, OPERATOR_DICT)
+result = operation_func(first, second)
 
 prompt(f'The result is {result}')

@@ -10,11 +10,17 @@
 # Display Result
 
 #################
+# Import Statements
+import subprocess
+
 # Functions
 
 ## Common Functions
 def prompt(message):
     print(f"==> {message}")
+
+def clear_screen():
+    subprocess.run('clear', shell=True)
 
 ## Introduction
 def introduce():
@@ -82,8 +88,15 @@ def multiply(a, b):
     return a * b
 
 def divide(a, b):
+    if b == 0:
+        prompt("Cannot Do Division with 0")
+        return None
     return a / b
 
+## Should Continue?
+def get_continue_confirmation():
+    prompt("Do you want to continue? Say Yes(y) or No(n)")
+    return input()
 
 # Variables
 OPERATOR_DICT = {
@@ -97,10 +110,21 @@ OPERATOR_DICT = {
 ###############################
 # Program Flow
 introduce()
-first = get_number("first")
-second = get_number("second")
-operation = get_operation()
-operation_func =get_operation_func(operation, OPERATOR_DICT)
-result = operation_func(first, second)
+while True:
+    first = get_number("first")
+    second = get_number("second")
 
-prompt(f'The result is {result}')
+    operation = get_operation()
+    operation_func =get_operation_func(operation, OPERATOR_DICT)
+
+    result = operation_func(first, second)
+
+    prompt(f'The result is {result}')
+
+    should_continue = get_continue_confirmation()
+    if should_continue.lower() in ['n', 'no']:
+        break
+    else:
+        clear_screen()
+
+prompt("Exiting the Calculator. Until we meet again!!")

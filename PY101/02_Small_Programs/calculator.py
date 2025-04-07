@@ -12,10 +12,14 @@
 #################
 # Functions
 
+## Common Functions
+def prompt(message):
+    print(f"==> {message}")
+
 ## Introduction
 def introduce():
-    print("Welcome to the Calculator\n"
-      "I can Add, Subtract, Multiply, Divide")
+    prompt("Welcome to the Calculator") 
+    prompt("I can Add, Subtract, Multiply, Divide\n")
 
 ## Dealing With Numbers
 def get_number(number_type = None):
@@ -31,7 +35,8 @@ def get_number_input(number_type):
         comment = "Give me a Number: "
     else:
         comment = f"Give me the {number_type} number: "
-    return input(comment)
+    prompt(comment)
+    return input()
 
 def process_number(num_str):
     return float(num_str)
@@ -51,9 +56,10 @@ def verify_num(num_str):
 
 ## Dealing With Operator
 def get_operator_input():
-    comment = '''What operation would you like to perform?\n
-                1) Add 2) Subtract 3) Multiply 4) Divide: '''
-    return input(comment)
+    comment = 'What operation would you like to perform?\n\
+    1) Add 2) Subtract 3) Multiply 4) Divide: '
+    prompt(comment)
+    return input()
 
 def get_operation(operator, operator_dict):
     for val in OPERATOR_DICT:
@@ -97,4 +103,4 @@ result = operation(first, second)
 # print(f'The operator is {operator}')
 # print(f'The operation is {operation}')
 
-print(f'The result is {result}')
+prompt(f'The result is {result}')

@@ -4,7 +4,8 @@ import json
 import os
 
 # Settings
-lang = 'en'
+LANG = 'en'
+DECIMAL_PLACES =  3
 
 # Functions
 
@@ -54,7 +55,12 @@ def remove_punc(num_str):
     return num_str
 
 def is_num_str(num_str):
-    return num_str.isdigit() and num_str
+    is_potential_decimal = num_str.count(".") <= 1
+    is_numeric = False
+    if is_potential_decimal:
+        mod_num_str = num_str.replace(".","")
+        is_numeric = mod_num_str.isdigit()
+    return is_potential_decimal and is_numeric and num_str
 
 ## Dealing With Operator
 def get_operation():
@@ -85,6 +91,10 @@ def divide(a, b):
         return None
     return a / b
 
+## Display Output
+def display_output(answer, decimal_places = DECIMAL_PLACES):
+    prompt(f'{COMMENTS['result']} {round(answer, decimal_places)}')
+
 ## Should Continue?
 def get_continue_confirmation():
     prompt(COMMENTS["continue_prompt"])
@@ -105,7 +115,7 @@ COMMENTS_FILE_PATH = os.path.join(script_dir, 'calc_comments.json')
 with open(COMMENTS_FILE_PATH,'r') as f:
     COMMENTS_FILE = json.load(f)
 
-COMMENTS = COMMENTS_FILE[lang]
+COMMENTS = COMMENTS_FILE[LANG]
 ###############################
 # Program Flow
 introduce()
@@ -118,7 +128,7 @@ while True:
 
     result = operation_func(first, second)
 
-    prompt(f'{COMMENTS['result']} {result}')
+    display_output(result, DECIMAL_PLACES)
 
     should_continue = get_continue_confirmation()
     if should_continue.lower() in ['n', 'no']:

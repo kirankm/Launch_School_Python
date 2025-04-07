@@ -10,6 +10,7 @@
         "operation_prompt": "What operation would you like to perform?\n1) Add 2) Subtract 3) Multiply 4) Divide: ",
         "invalid_operation": "You must choose 1, 2, 3, or 4",
         "division_by_zero": "Cannot Do Division with 0",
+        "result_into":"When you",
         "result": "The result is",
         "continue_prompt": "Do you want to continue? Say Yes(y) or No(n)",
         "exit_message": "Exiting the Calculator. Until we meet again!!"
@@ -25,6 +26,7 @@
         "operation_prompt": "¿Qué operación te gustaría realizar?\n1) Sumar 2) Restar 3) Multiplicar 4) Dividir: ",
         "invalid_operation": "Debes elegir 1, 2, 3, o 4",
         "division_by_zero": "No se puede hacer división entre 0",
+        "result_into":"Cuando tú",
         "result": "El resultado es",
         "continue_prompt": "¿Quieres continuar? Di Sí(s) o No(n)",
         "exit_message": "Saliendo de la Calculadora. ¡¡Hasta que nos encontremos de nuevo!!"

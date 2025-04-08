@@ -25,69 +25,108 @@
 # Show all information (input info) along with  output
 # Rounding outputs
 # Multiple Random Messages
+# Convert Getting the Questio to a separate function
+# Treat for 0 interest rate
 
 #### Is there any way, I can avoid multiple calculation, without validation doing multiple tasks
 ##### One option is to have the validation function return 2 values
 
 #### Is it a good idea to move the warning as a part of the status dictionary?
 ###############################
+import subprocess
+
 # Settings
 
 # CONSTANTS
-LOAN_STATUS_DICT = {
-    '0':"IS NOT A VALID LOAN AMOUNT",
-    '1': "IS NOT A VALID INPUT",
-    '2': "Only Positive Values are allowed for Loan Amount!! Try again".upper()
+STATUS_DICT = {
+    '0':"IS NOT A VALID XXXXX",
+    '1': "IS NOT A VALID INPUT FOR XXXXX",
+    '2': "Only Positive Values are allowed for XXXXX!! Try again".upper()
 }
 
 # Functions
 ## General Functions
-def prompt(msg):
+def prompt(msg, prefix = False):
+    if prefix:
+        print("\n")
     print(f"==>{msg}")
 
 ## Introduction
 def give_introduction():
+    print("\n")
     prompt("Welcome to the Mortgage Calculator")
-    prompt("I will help you figure out your monthly installments")
-    prompt("First help me with some information about your loan")
+    prompt("I will help you figure out your monthly installments\n")
+    prompt("First help me with some information about your loan\n")
 
 ## Getting Loan Amount
 def get_loan_amount():
     prompt("What is the total Loan Amount")
     while True:
         loan_amount_input = input()
-        cleaned_loan_amount = clean_input_string(loan_amount_input, [',', ""])
-        loan_validation_status = validate_loan_amount(cleaned_loan_amount)
+        cleaned_loan_amount = clean_input_string(loan_amount_input, [',', "_"])
+        loan_validation_status = validate_float(cleaned_loan_amount)
         if loan_validation_status is True:
             string_cleaning_warning(cleaned_loan_amount,loan_amount_input)
             return float(cleaned_loan_amount)
-        generate_error_prompt(cleaned_loan_amount, loan_validation_status, LOAN_STATUS_DICT)
+        generate_error_prompt(cleaned_loan_amount, 
+                              loan_validation_status, STATUS_DICT,
+                              'loan amount')
 
-def validate_loan_amount(loan_amount_str):
-    status = False
-    try:
-        parsed_loan_amount = float(loan_amount_str)
-    except (ValueError, TypeError):
-        status = '0'
-    else:
-        status = check_loan_amount_positive(parsed_loan_amount)
-        if status is True:
-            status = check_loan_amount_valid(loan_amount_str)
-    return status
+## Get interest Rate
+def get_interest_rate():
+    prompt("What is the Annual Interest Rate", True)
+    while True:
+        interest_rate_input = input()
+        cleaned_interest_rate = clean_input_string(interest_rate_input, ['%'])
+        interest_validation_status = validate_float(cleaned_interest_rate)
+        if interest_validation_status is True:
+            return float(cleaned_interest_rate)
+        generate_error_prompt(cleaned_interest_rate, 
+                              interest_validation_status, STATUS_DICT,
+                              'interest rate')
 
-def check_loan_amount_valid(loan_amount_str):
-    invalid_inputs = {'nan', 'inf'}
-    if loan_amount_str.lower() in invalid_inputs:
-        return '1'
-    return True
+## Get Loan Duration
+def get_loan_duration():
+    prompt("What is the Duration of the loan", True)
+    while True:
+        loan_duration_input = input()
+        cleaned_loan_duration = clean_input_string(loan_duration_input, ['m'])
+        duration_validation_status = validate_int(cleaned_loan_duration)
+        if duration_validation_status is True:
+            return float(cleaned_loan_duration)
+        generate_error_prompt(cleaned_loan_duration, 
+                              duration_validation_status, STATUS_DICT,
+                              'loan duration')
 
-def check_loan_amount_positive(parsed_loan_amount):
-    if parsed_loan_amount < 0:
-        return '2'
-    return True
 
+## Calculate Monthly Installment
+def get_monthly_installment(amount, annual_interest, duration_in_months):
+    monthly_interest = annual_interest / (12 * 100)
+    if duration_in_months == 0:
+        return amount * (1 + monthly_interest)
+    elif annual_interest == 0:
+        return amount / duration_in_months
+    else: 
+        return calculate_installment(amount, monthly_interest, 
+                                      duration_in_months)
+    
+def calculate_installment(amount, monthly_interest, duration_in_months):
+    numerator = amount * monthly_interest
+    denominator = (1 - (1 + monthly_interest)**(-duration_in_months))
+    return numerator / denominator
 
+## Display Output
+def display_output(original_amount, installment, duration):
+    total_amount = installment * duration
+    total_interest = total_amount - original_amount
+    prompt(f"The monthly installment is {installment}")
+    prompt(f"The total Amount Paid is, {total_amount}")
+    prompt(f"The total interest paid is {total_interest}")
 
+## Should Continue?
+def get_continue_confirmation():
+    prompt("Would you like to Calculate the Installment Again")
+    return input()
 
 ## Common Functions
 def string_cleaning_warning(cleaned_string, original_string):
@@ -100,27 +139,60 @@ def clean_input_string(input_string, punc_to_remove = [',']):
         input_string = input_string.replace(punc, "")
     return input_string
 
-def generate_error_prompt(value, status, status_dict):
+def generate_error_prompt(value, status, status_dict, value_type = "float"):
+    msg = status_dict[status].replace("XXXXX", value_type).upper()
     if status == '2':
-        prompt(status_dict[status])
+        prompt(msg)
     else:
-        prompt(f"{value} {status_dict[status]}")
+        prompt(f"{value} {msg}")
+
+def validate_float(float_str):
+    status = False
+    try:
+        parsed_float = float(float_str)
+    except (ValueError, TypeError):
+        status = '0'
+    else:
+        status = check_float_positive(parsed_float)
+        if status is True:
+            status = check_float_valid(float_str)
+    return status
+
+def check_float_valid(float_str):
+    invalid_inputs = {'nan', 'inf'}
+    if float_str.lower() in invalid_inputs:
+        return '1'
+    return True
+
+def check_float_positive(parsed_float):
+    if parsed_float < 0:
+        return '2'
+    return True
+
+def validate_int(int_str):
+     if int_str.strip().isdigit():
+         return True
+     return '0'
+
+def clear_screen():
+    subprocess.run('clear', shell=True, check = True)
 
 # Program Flow
 give_introduction()
 
-loan_amount = get_loan_amount()
+while True:
+    loan_amount = get_loan_amount()
+    interest_rate = get_interest_rate()
+    loan_duration = get_loan_duration()
 
-prompt("What is the Annual Interest Rate")
-interest_rate = input()
+    monthly_installment = get_monthly_installment(loan_amount, 
+                                                interest_rate, loan_duration)
 
-prompt("What is the loan Duration in months")
-loan_duration = input()
+    display_output(loan_amount, monthly_installment, loan_duration)
 
-monthly_interest_rate = float( interest_rate ) / (12*100)
-denominator_part_b = (1 + monthly_interest_rate)**(- float(loan_duration))
-denominator = (1 - denominator_part_b)
+    should_continue = get_continue_confirmation()
+    if should_continue.lower() in ['n', 'no']:
+        break
+    clear_screen()
 
-monthly_installment = float( loan_amount ) * monthly_interest_rate / denominator
-
-prompt(f"The monthly installment amount is {monthly_installment}")
+prompt("Until We see again")

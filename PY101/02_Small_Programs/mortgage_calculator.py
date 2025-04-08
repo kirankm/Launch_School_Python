@@ -45,16 +45,10 @@ def get_loan_amount():
     prompt("What is the total Loan Amount")
     while True:
         loan_amount_input = input()
-        cleaned_loan_amount = clean_loan_amount(loan_amount_input)
+        cleaned_loan_amount = clean_input_string(loan_amount_input, [',', ""])
         if is_valid_loan_amount(cleaned_loan_amount):
             string_cleaning_warning(cleaned_loan_amount,loan_amount_input)
             return float(cleaned_loan_amount)
-
-def clean_loan_amount(loan_amount_str):
-    punc_to_remove = [',', '_']
-    for punc in punc_to_remove:
-        loan_amount_str = loan_amount_str.replace(punc, "")
-    return loan_amount_str
 
 def is_valid_loan_amount(loan_amount_str):
     status = False
@@ -87,8 +81,10 @@ def string_cleaning_warning(cleaned_string, original_string):
         prompt("WARNING!! THE INPUT STRING WAS CLEANED")
         prompt(f"{original_string} was converted to {cleaned_string}")
 
-#def clean_input_string(input_string, punc_to_remove = [',', ""])
-
+def clean_input_string(input_string, punc_to_remove = [',']):
+    for punc in punc_to_remove:
+        input_string = input_string.replace(punc, "")
+    return input_string
 
 # Program Flow
 give_introduction()

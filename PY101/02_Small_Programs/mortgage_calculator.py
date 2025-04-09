@@ -106,8 +106,8 @@ def get_loan_duration():
 def get_monthly_installment(amount, annual_interest, duration_in_months):
     monthly_interest = annual_interest / (12 * 100)
     if duration_in_months == 0:
-        ## If months 0, pay with 1 month interest
-        return amount * (1 + monthly_interest)
+        ## If months 0, Pay the full amount back immediately
+        return amount
     elif annual_interest == 0:
         return amount / duration_in_months
     else: 
@@ -124,9 +124,9 @@ def display_output(original_amount, installment, duration):
     total_amount = installment * max(duration, 1) 
     ### Ensuring that the 0 month case is taken care of
     total_interest = total_amount - original_amount
-    prompt(f"The monthly installment is {installment}", True)
-    prompt(f"The total Amount Paid is, {total_amount}")
-    prompt(f"The total interest paid is {total_interest}")
+    prompt(f"The monthly installment is ${round(installment, DECIMAL_PLACES)}", True)
+    prompt(f"The total Amount Paid is, ${round(total_amount, DECIMAL_PLACES)}")
+    prompt(f"The total interest paid is ${round(total_interest, DECIMAL_PLACES)}")
 
 ## Should Continue?
 def get_continue_confirmation():

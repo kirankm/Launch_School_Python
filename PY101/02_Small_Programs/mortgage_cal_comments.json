@@ -1,0 +1,54 @@
+{
+    "en": {
+        "welcome": "Welcome to the Mortgage Calculator",
+        "introduction": "I will help you figure out your monthly installments",
+        "information_prompt": "First help me with some information about your loan",
+        
+        "loan_amount_prompt": "What is the total Loan Amount",
+        "interest_rate_prompt": "What is the Annual Interest Rate",
+        "loan_duration_prompt": "What is the Duration of the loan",
+        
+        "error_messages": {
+        "not_valid": "IS NOT A VALID XXXXX",
+        "not_valid_input": "IS NOT A VALID INPUT FOR XXXXX",
+        "only_positive": "Only Positive Values are allowed for XXXXX!! Try again",
+        "warning_cleaned": "WARNING!! THE INPUT STRING WAS CLEANED"
+        },
+        
+        "warning_conversion": " was converted to ",
+        "invalid_response": "That's not a valid response!! Only Yes(y) or No(n) is permitted",
+        
+        "monthly_installment": "The monthly installment is ",
+        "total_amount_paid": "The total Amount Paid is ",
+        "total_interest_paid": "The total interest paid is ",
+        
+        "continue_prompt": "Would you like to Calculate the Installment Again. Say Yes(y) or No(n)",
+        "exit_message": "Until We meet again"
+    },
+    "es": {
+        "welcome": "Bienvenido a la Calculadora de Hipotecas",
+        "introduction": "Te ayudaré a calcular tus cuotas mensuales",
+        "information_prompt": "Primero, proporcióname alguna información sobre tu préstamo",
+        
+        "loan_amount_prompt": "¿Cuál es el monto total del préstamo?",
+        "interest_rate_prompt": "¿Cuál es la tasa de interés anual?",
+        "loan_duration_prompt": "¿Cuál es la duración del préstamo?",
+        
+        "error_messages": {
+          "not_valid": "NO ES UN XXXXX VÁLIDO",
+          "not_valid_input": "NO ES UNA ENTRADA VÁLIDA PARA XXXXX",
+          "only_positive": "¡¡Solo se permiten valores positivos para XXXXX!! Inténtalo de nuevo",
+          "warning_cleaned": "¡¡ADVERTENCIA!! LA CADENA DE ENTRADA FUE LIMPIADA"
+        },
+        
+        "warning_conversion": " fue convertido a ",
+        "invalid_response": "¡Esa no es una respuesta válida! Solo se permite Sí(s) o No(n)",
+        
+        "monthly_installment": "La cuota mensual es $",
+        "total_amount_paid": "El monto total pagado es $",
+        "total_interest_paid": "El interés total pagado es $",
+        
+        "continue_prompt": "¿Te gustaría calcular otra cuota? Di Sí(s) o No(n)",
+        "exit_message": "Hasta que nos volvamos a encontrar"
+    }
+}

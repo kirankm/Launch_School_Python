@@ -4,18 +4,18 @@
         "introduction": "I will help you figure out your monthly installments",
         "information_prompt": "First help me with some information about your loan",
         
-        "loan_amount_prompt": "What is the total Loan Amount",
+        "loan_amount_prompt": "What is the total Loan Amount in Dollars",
         "interest_rate_prompt": "What is the Annual Interest Rate",
-        "loan_duration_prompt": "What is the Duration of the loan",
+        "loan_duration_prompt": "What is the Duration of the loan in Months",
         
         "error_messages": {
-        "not_valid": "IS NOT A VALID XXXXX",
-        "not_valid_input": "IS NOT A VALID INPUT FOR XXXXX",
+        "not_valid": "IS NOT A VALID XXXXX! Try Again",
+        "not_valid_input": "IS NOT A VALID INPUT FOR XXXXX! Try Again ",
         "only_positive": "Only Positive Values are allowed for XXXXX!! Try again",
         "warning_cleaned": "WARNING!! THE INPUT STRING WAS CLEANED"
         },
         
-        "warning_conversion": " was converted to ",
+        "warning_conversion": "was converted to",
         "invalid_response": "That's not a valid response!! Only Yes(y) or No(n) is permitted",
         
         "monthly_installment": "The monthly installment is ",

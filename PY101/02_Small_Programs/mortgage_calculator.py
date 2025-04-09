@@ -145,12 +145,12 @@ def display_output(original_amount, installment, duration):
     total_amount = installment * max(duration, 1)
     ### Ensuring that the 0 month case is taken care of
     total_interest = total_amount - original_amount
-    prompt(f"{COMMENTS['monthly_installment']} \
-           ${round(installment, DECIMAL_PLACES)}", True)
-    prompt(f"{COMMENTS['total_amount_paid']} \
-           ${round(total_amount, DECIMAL_PLACES)}")
-    prompt(f"{COMMENTS['total_interest_paid']} \
-           ${round(total_interest, DECIMAL_PLACES)}")
+    prompt(f"{COMMENTS['monthly_installment']} ${
+        round(installment, DECIMAL_PLACES)}", True)
+    prompt(f"{COMMENTS['total_amount_paid']} ${
+        round(total_amount, DECIMAL_PLACES)}")
+    prompt(f"{COMMENTS['total_interest_paid']} ${
+        round(total_interest, DECIMAL_PLACES)}")
 
 ## Should Continue?
 def get_continue_confirmation():

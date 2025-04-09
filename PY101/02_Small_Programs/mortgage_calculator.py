@@ -23,17 +23,16 @@
 # Internationalization
 # XXXXXXXXXX Deal with no interest loans
 # XXXXXXXXXX Show all information (input info) along with  output
-# Rounding outputs
+# XXXXXXXXXX Rounding outputs
 # Multiple Random Messages
 # Convert Getting the Continue Question to a separate function
 # XXXXXXXXXX Treat for 0 interest rate
-# Deal with the 0 month duration case, while getting the value
+# XXXXXXXXXX Deal with the 0 month duration case, while getting the value
 
 #### Is there any way, I can avoid multiple calculation, without validation doing multiple tasks
 ##### One option is to have the validation function return 2 values
 
 #### Is it a good idea to move the warning as a part of the status dictionary?
-### Should I move getting numbers as a generic function
 ###############################
 import subprocess
 
@@ -44,7 +43,8 @@ DECIMAL_PLACES = 2
 STATUS_DICT = {
     '0':"IS NOT A VALID XXXXX",
     '1': "IS NOT A VALID INPUT FOR XXXXX",
-    '2': "Only Positive Values are allowed for XXXXX!! Try again".upper()
+    '2': "Only Positive Values are allowed for XXXXX!! Try again".upper(),
+    '3': "WARNING!! THE INPUT STRING WAS CLEANED"
 }
 
 # Functions
@@ -64,43 +64,20 @@ def give_introduction():
 ## Getting Loan Amount
 def get_loan_amount():
     prompt("What is the total Loan Amount")
-    while True:
-        loan_amount_input = input()
-        cleaned_loan_amount = clean_input_string(loan_amount_input, [',', "_"])
-        loan_validation_status = validate_float(cleaned_loan_amount)
-        if loan_validation_status is True:
-            string_cleaning_warning(cleaned_loan_amount,loan_amount_input)
-            return float(cleaned_loan_amount)
-        generate_error_prompt(cleaned_loan_amount, 
-                              loan_validation_status, STATUS_DICT,
-                              'loan amount')
+    return get_numeric_input("loan amount", input_type = "float", 
+                             chars_to_clean = [',', "_"])
 
 ## Get interest Rate
 def get_interest_rate():
     prompt("What is the Annual Interest Rate", True)
-    while True:
-        interest_rate_input = input()
-        cleaned_interest_rate = clean_input_string(interest_rate_input, ['%'])
-        interest_validation_status = validate_float(cleaned_interest_rate)
-        if interest_validation_status is True:
-            return float(cleaned_interest_rate)
-        generate_error_prompt(cleaned_interest_rate, 
-                              interest_validation_status, STATUS_DICT,
-                              'interest rate')
+    return get_numeric_input("interest rate", input_type = "float", 
+                             chars_to_clean = ['%'])
 
 ## Get Loan Duration
 def get_loan_duration():
     prompt("What is the Duration of the loan", True)
-    while True:
-        loan_duration_input = input()
-        cleaned_loan_duration = clean_input_string(loan_duration_input, ['m'])
-        duration_validation_status = validate_int(cleaned_loan_duration)
-        if duration_validation_status is True:
-            return float(cleaned_loan_duration)
-        generate_error_prompt(cleaned_loan_duration, 
-                              duration_validation_status, STATUS_DICT,
-                              'loan duration')
-
+    return get_numeric_input("loan duration", input_type = "int", 
+                             chars_to_clean = ['m'])
 
 ## Calculate Monthly Installment
 def get_monthly_installment(amount, annual_interest, duration_in_months):
@@ -134,6 +111,33 @@ def get_continue_confirmation():
     return input()
 
 ## Common Functions
+def get_numeric_input(input_name, input_type = "float", chars_to_clean = []):
+    while True:
+        input_value = input()
+        validation_func = get_validation_func(input_type)
+        parsing_func = get_parsing_func(input_type)
+
+        cleaned_input_value = clean_input_string(input_value, chars_to_clean)
+        input_validation_status = validation_func(cleaned_input_value)
+
+        if input_validation_status is True:
+            string_cleaning_warning(cleaned_input_value, input_value)
+            return float(cleaned_input_value)
+        
+        generate_error_prompt(cleaned_input_value, input_validation_status,
+                              STATUS_DICT, input_name)
+
+def get_validation_func(input_type):
+    if input_type.lower() == "float":
+        return validate_float
+    return validate_int
+
+def get_parsing_func(input_type):
+    if input_type.lower() == "float":
+        return float
+    return int
+
+
 def string_cleaning_warning(cleaned_string, original_string):
     if cleaned_string != original_string:
         prompt("WARNING!! THE INPUT STRING WAS CLEANED")

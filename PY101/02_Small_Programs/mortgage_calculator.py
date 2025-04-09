@@ -8,8 +8,8 @@
     # Percentage Removal
 # get the Loan Duration in months
     # Validate
-    # If Decimal Round Up and give Warning
-    # Future Give Option for 3y2m etc
+    # If Decimal Round Up and give Warning ### Not Done
+    # Future Give Option for 3y2m etc ######## Not Done
 # Get the Monthly Interest Rate
 # Calculate Monthly Payment
 # Show Output
@@ -19,23 +19,26 @@
 
 ## Additional Aspects
 # Take Comments Out
-# Prompt separating output
+# XXXXXXXXXX Prompt separating output 
 # Internationalization
-# Deal with no interest loans
-# Show all information (input info) along with  output
+# XXXXXXXXXX Deal with no interest loans
+# XXXXXXXXXX Show all information (input info) along with  output
 # Rounding outputs
 # Multiple Random Messages
-# Convert Getting the Questio to a separate function
-# Treat for 0 interest rate
+# Convert Getting the Continue Question to a separate function
+# XXXXXXXXXX Treat for 0 interest rate
+# Deal with the 0 month duration case, while getting the value
 
 #### Is there any way, I can avoid multiple calculation, without validation doing multiple tasks
 ##### One option is to have the validation function return 2 values
 
 #### Is it a good idea to move the warning as a part of the status dictionary?
+### Should I move getting numbers as a generic function
 ###############################
 import subprocess
 
 # Settings
+DECIMAL_PLACES = 2
 
 # CONSTANTS
 STATUS_DICT = {
@@ -103,6 +106,7 @@ def get_loan_duration():
 def get_monthly_installment(amount, annual_interest, duration_in_months):
     monthly_interest = annual_interest / (12 * 100)
     if duration_in_months == 0:
+        ## If months 0, pay with 1 month interest
         return amount * (1 + monthly_interest)
     elif annual_interest == 0:
         return amount / duration_in_months
@@ -117,15 +121,16 @@ def calculate_installment(amount, monthly_interest, duration_in_months):
 
 ## Display Output
 def display_output(original_amount, installment, duration):
-    total_amount = installment * duration
+    total_amount = installment * max(duration, 1) 
+    ### Ensuring that the 0 month case is taken care of
     total_interest = total_amount - original_amount
-    prompt(f"The monthly installment is {installment}")
+    prompt(f"The monthly installment is {installment}", True)
     prompt(f"The total Amount Paid is, {total_amount}")
     prompt(f"The total interest paid is {total_interest}")
 
 ## Should Continue?
 def get_continue_confirmation():
-    prompt("Would you like to Calculate the Installment Again")
+    prompt("Would you like to Calculate the Installment Again", True)
     return input()
 
 ## Common Functions
@@ -195,4 +200,4 @@ while True:
         break
     clear_screen()
 
-prompt("Until We see again")
+prompt("Until We see again", True)

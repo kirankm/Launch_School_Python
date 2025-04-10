@@ -72,4 +72,5 @@ RPS_COMMENTS = load_rps_files("rps_comments.json")[PERSONALITY]
 
 
 # Program Flow
-introduce()
+user_introduction_choice = introduce()
+if 

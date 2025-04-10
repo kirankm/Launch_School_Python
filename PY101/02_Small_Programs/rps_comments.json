@@ -1,0 +1,12 @@
+{
+    "normal":{
+        "intro": [
+            "Welcome to the Rock Paper Scissors Game", 
+            "\tPress h for help", 
+            "\tPress c for config", 
+            "\tPress n for new game",
+            "\tPress s for high scores"
+        ],
+        "intro_error":"Invalid selection. Please choose one of h, c, n or s"
+    }
+}

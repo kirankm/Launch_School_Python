@@ -61,8 +61,6 @@ def introduce():
     intro_error_msg = RPS_COMMENTS['intro_error']
     valid_input = ['h', 'c', 'n', 's']
     user_choice = get_valid_input(intro_msg, intro_error_msg, valid_input)
-
-    prompt(f"You have chosen {user_choice}")
     return user_choice
 
 # Pre Load Game Files

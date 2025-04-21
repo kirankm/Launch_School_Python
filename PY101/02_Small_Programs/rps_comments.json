@@ -1,12 +1,57 @@
 {
-    "normal":{
+    "Normal":{
         "intro": [
             "Welcome to the Rock Paper Scissors Game", 
-            "\tPress h for help", 
-            "\tPress c for config", 
-            "\tPress n for new game",
-            "\tPress s for high scores"
+            "\tEnter h for help", 
+            "\tEnter c for config", 
+            "\tEnter n for new game",
+            "\tEnter s for high scores",
+            "\tEnter q to quit game"
         ],
-        "intro_error":"Invalid selection. Please choose one of h, c, n or s"
+        "intro_error":"Invalid selection. Please choose one of h, c, n or s",
+        "new_game_intro": "Let's start a new game between human vs computer",
+        "human_move_choose": "Please Choose one of the following:",
+        "human_move_error": "Invalid selection. Please choose from the following only:",
+        "incorrect_validation_method": "Error! Incorrect validation methodology given",
+        "user_move": "Player has decided to go with: ",
+        "computer_move": "Computer has decided to go with: ",
+        "tie": "Looks like it's a draw",
+        "user_wins": "The winner is the user",
+        "computer_wins": "The winner is the computer",
+        "help_screen_intro": [
+            "Welcome to Rock-Paper-Scissors-Lizard-Spock Help Screen!",
+            "Need a quick refresher? You're in the right place."
+        ],
+        "moves_menu":"These are your different move options",
+        "additional_options":[
+            "These are some additional options you have", 
+            "In the main menu enter c to view and edit current configuration",
+            "In the main menu enter s to see your game history statistics",
+            "In the main menu enter q to exit the game",
+            "During a game, enter h to review the rules and different moves",
+            "During a game, enter q to quit the game halfway"
+        ],
+        "exit_help":"Enter q to return to the main menu",
+        "exit_game":"We are sad to see you go. Until next time!!",
+        "config_screen_intro": [
+            "Welcome to Rock-Paper-Scissors-Lizard-Spock Config Screen!",
+            "Here you can edit the followings settings in the game"
+        ],
+        "config_screen_options": [
+            "\tEnter p to edit the AI Personality", 
+            "\tEnter r to edit the number of Rounds in the tournament", 
+            "\tEnter n to edit the Player Name",
+            "\tEnter m to edit the game mode",
+            "\tEnter g to edit the game path",
+            "",
+            "\tYou can also enter q to go back to the main menu",
+            "",
+            "\tYou can also edit the rps_config file directly. BUT BE VERY CAREFUL. YOU MAY BREAK THE GAME"
+        ],
+        "config_screen_invalid_selection": [
+            "Invalid Selection!! Please choose from the Options Below:"
+        ],
+        "config_current_value" : "The current XXXX is",
+        "save_config_exit" : "Exiting the game to save changes. Start a new game to see changes"
     }
 }

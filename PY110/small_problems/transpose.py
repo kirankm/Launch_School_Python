@@ -15,10 +15,8 @@ def transpose(matrix):
     return transposed_matrix
 
 def transpose(matrix):
-    no_of_rows = len(matrix)
     no_of_cols = len(matrix[0])
-    
-    transposed_matrix = [[],[],[]]
+    transposed_matrix = [[] for _ in range(no_of_cols)]
     for row in matrix:
         for col_no, val in enumerate(row):
             transposed_matrix[col_no].append(val)

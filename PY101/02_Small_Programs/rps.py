@@ -102,13 +102,13 @@ def exit_help_screen():
 
 ################# config screen functions
 def edit_config(settings):
-    new_config = {}
+    new_config = settings.copy()
     while True: 
         introduce_config_screen()
         edit_config_function = get_config_edit_function(settings)
         if edit_config_function is None:
             break
-        edit_config_function(settings, new_config)
+        edit_config_function(new_config)
     updated_config = remove_redundant_updates(settings, new_config)
     return updated_config
 
@@ -133,7 +133,7 @@ def show_current_val(settings_file, setting_display_name, setting_key):
     msg = f"The current {setting_display_name} is {current_setting_value}"
     prompt(msg)
     
-def get_new_value_from_options(settings, list_of_options, setting_display_name):
+def get_new_value_from_options(list_of_options, setting_display_name):
     get_value_msg = f"Choose the new value for {setting_display_name}"
     err_msg = f"Invalid value given for {setting_display_name}. Choose from:"
 
@@ -149,55 +149,55 @@ def get_new_value_from_options(settings, list_of_options, setting_display_name):
                  if val[0].lower() == user_input][0]
     return new_value
 
-def get_new_value_from_user(settings, validation_fn, setting_display_name):
+def get_new_value_from_user(validation_fn, setting_display_name):
     get_value_msg = f"Choose the new value for {setting_display_name}"
     err_msg = f"Invalid value given for {setting_display_name}."
     new_value = get_valid_input(get_value_msg, err_msg, validation_fn)
     return new_value
 
-def edit_ai_personality(settings, new_config):
+def edit_ai_personality(new_config):
     clear_screen()
-    show_current_val(settings, "AI Personality", "AI_personality")
-    list_of_options = settings['AI_personality_options']
-    user_chosen_value = get_new_value_from_options(settings, list_of_options,
+    show_current_val(new_config, "AI Personality", "AI_personality")
+    list_of_options = new_config['AI_personality_options']
+    user_chosen_value = get_new_value_from_options(list_of_options,
                                                    "AI Personality")
     new_config["AI_personality"] = user_chosen_value
 
-def edit_game_mode(settings, new_config):
+def edit_game_mode(new_config):
     clear_screen()
-    show_current_val(settings, "Game Mode", "game_mode")
-    list_of_options = settings['game_mode_options']
-    user_chosen_value = get_new_value_from_options(settings, list_of_options,
+    show_current_val(new_config, "Game Mode", "game_mode")
+    list_of_options = new_config['game_mode_options']
+    user_chosen_value = get_new_value_from_options(list_of_options,
                                                    "Game Mode")
     new_config["game_mode"] = user_chosen_value 
 
-def edit_player_name(settings, new_config):
+def edit_player_name(new_config):
     clear_screen()
-    show_current_val(settings, "Player Name", "name_of_player")
+    show_current_val(new_config, "Player Name", "name_of_player")
     prompt("Choose the new value for User Name")
-    user_chosen_value = get_new_value_from_user(settings, is_len_gt_0,
+    user_chosen_value = get_new_value_from_user(is_len_gt_0,
                                                 "Player Name")
     new_config["name_of_player"] = user_chosen_value 
     
 def is_len_gt_0(string):
     return len(string) > 0
 
-def edit_game_path(settings, new_config):
+def edit_game_path(new_config):
     clear_screen()
-    show_current_val(settings, "PATH TO GAME HISTORY", "game_history_path")
+    show_current_val(new_config, "PATH TO GAME HISTORY", "game_history_path")
     prompt("Choose the new value for Path to Game History")
-    user_chosen_value = get_new_value_from_user(settings, is_valid_path,
+    user_chosen_value = get_new_value_from_user(is_valid_path,
                                                 "PATH TO GAME HISTORY")
     new_config["game_history_path"] = user_chosen_value
 
 def is_valid_path(path):
     return os.path.exists(path)
 
-def edit_no_of_rounds(settings, new_config):
+def edit_no_of_rounds(new_config):
     clear_screen()
-    show_current_val(settings, "Number of Rounds", "no_of_rounds")
+    show_current_val(new_config, "Number of Rounds", "no_of_rounds")
     prompt("Choose the new value for Number of Rounds")
-    user_chosen_value = get_new_value_from_user(settings, is_valid_int,
+    user_chosen_value = get_new_value_from_user(is_valid_int,
                                                 "Number of Rounds")
     new_config["no_of_rounds"] = int(user_chosen_value)
 

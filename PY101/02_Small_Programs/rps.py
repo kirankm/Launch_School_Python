@@ -117,9 +117,9 @@ def introduce_config_screen():
     prompt(RPS_COMMENTS['config_screen_intro'])
 
 def get_config_edit_function(settings):
-    config_options_dict = settings['config_edit_menu']
-    config_edit_msg = RPS_COMMENTS['config_screen_options']
-    config_error_msg = RPS_COMMENTS['config_screen_invalid_selection']
+    config_options_dict = settings['config_edit_menu'].copy()
+    config_edit_msg = RPS_COMMENTS['config_screen_options'].copy()
+    config_error_msg = RPS_COMMENTS['config_screen_invalid_selection'].copy()
     config_error_msg += config_edit_msg
 
     user_choice = get_valid_input(config_edit_msg, config_error_msg, 
@@ -182,16 +182,23 @@ def edit_player_name(new_config):
 def is_len_gt_0(string):
     return len(string) > 0
 
-def edit_game_path(new_config):
+def edit_game_history_file(new_config):
     clear_screen()
-    show_current_val(new_config, "PATH TO GAME HISTORY", "game_history_path")
+    show_current_val(new_config, "GAME HISTORY FILE", "game_history_filename")
     prompt("Choose the new value for Path to Game History")
-    user_chosen_value = get_new_value_from_user(is_valid_path,
-                                                "PATH TO GAME HISTORY")
-    new_config["game_history_path"] = user_chosen_value
+    user_chosen_value = get_new_value_from_user(is_valid_filename,
+                                                "GAME HISTORY FILE")
+    new_config["game_history_filename"] = user_chosen_value
 
-def is_valid_path(path):
-    return os.path.exists(path)
+def is_valid_filename(name):
+    if not name or name in {'.', '..'}:
+        return False
+
+    invalid_chars = r'<>:"/\\|?*\0'
+    if any(char in name for char in invalid_chars):
+        return False
+
+    return True
 
 def edit_no_of_rounds(new_config):
     clear_screen()
@@ -220,22 +227,22 @@ def update_and_save_config(current_settings, updated_settings):
         json.dump(new_settings, f, indent = 2)
 
 ############################# new game functions
-def start_new_game(move_choice, winning_moves, no_of_rounds):
-    new_game_introduction()
+def start_new_game(settings):
+    PLAYER_NAME = settings["name_of_player"].capitalize()
+    new_game_introduction(PLAYER_NAME)
     history = initialize_game_history()
-    while check_game_incomplete(history, no_of_rounds):
-        round_winner = play_new_round(move_choice, winning_moves, history,
-                                                    no_of_rounds)
+    while check_game_incomplete(history, settings["no_of_rounds"]):
+        round_winner = play_new_round(settings, history, PLAYER_NAME)
         update_history(history, round_winner)
         continue_next_round = should_continue_next_round(history, 
-                                                         no_of_rounds)
+                                                    settings["no_of_rounds"])
         if continue_next_round == 'q':
             break
-    display_final_result(history, no_of_rounds)
+    display_final_result(history, settings["no_of_rounds"], PLAYER_NAME)
     return should_play_again() == "y"
      
-def new_game_introduction():
-    intro_msg = RPS_COMMENTS['new_game_intro']
+def new_game_introduction(user_name):
+    intro_msg = RPS_COMMENTS['new_game_intro'].replace('user', user_name)
     clear_screen()
     prompt(intro_msg)
 
@@ -263,13 +270,18 @@ def should_continue_next_round(curr_history, no_of_rounds):
         user_input = input()
         return user_input
 
-def display_final_result(game_history, no_of_rounds):
+def display_final_result(game_history, no_of_rounds, user_name):
     if check_game_incomplete(game_history, no_of_rounds):
-        prompt(RPS_COMMENTS['user_quit_early'], True)
+        final_msg = RPS_COMMENTS['user_quit_early']
     elif game_history['user'] > game_history['computer']:
-        prompt(RPS_COMMENTS['user_won'], True)
+        final_msg = RPS_COMMENTS['user_won']
+        win_msg = f" by winning {game_history['user']} rounds"
+        final_msg += win_msg
     else:
-        prompt(RPS_COMMENTS['user_lost'], True)
+        final_msg = RPS_COMMENTS['user_lost']
+        win_msg = f" by winning {game_history['computer']} rounds"
+        final_msg += win_msg
+    prompt(final_msg.replace('User', user_name), True)
 
 def should_play_again():
     input_msg = RPS_COMMENTS["play_tournament_again"]
@@ -282,15 +294,17 @@ def validate_should_continue(user_input):
     valid_values = ['yes', 'y', 'no', 'n']
     return user_input.lower() in valid_values
 
-def play_new_round(move_choice, winning_moves, game_history, total_rounds):
-    new_round_introduction(game_history, total_rounds)
-    user_move = get_user_move(move_choice)
-    computer_move = get_computer_move(move_choice)
-    winner = identify_winner(user_move, computer_move, winning_moves)
-    display_round_result(winner, user_move, computer_move, winning_moves)
+def play_new_round(settings, game_history, user_name):
+    new_round_introduction(game_history, settings["no_of_rounds"], user_name)
+    user_move = get_user_move(settings['move_choice'], user_name)
+    computer_move = get_computer_move(settings['move_choice'], 
+                                      settings['game_mode'], user_move)
+    winner = identify_winner(user_move, computer_move, settings['rules'])
+    display_round_result(winner, user_move, computer_move, settings['rules'],
+                        user_name)
     return winner
 
-def new_round_introduction(game_history, total_rounds):
+def new_round_introduction(game_history, total_rounds, user_name):
     intro_msg = RPS_COMMENTS['new_round_intro']
     total_games = game_history['user'] + game_history['computer']
     intro_msg = f"{intro_msg}{total_games + 1}"
@@ -298,39 +312,55 @@ def new_round_introduction(game_history, total_rounds):
         clear_screen()
     if game_history['last_match'] != 'tie':
         prompt(intro_msg, prefix_space = True)
-        display_current_score(game_history, total_rounds)
+        display_current_score(game_history, total_rounds, user_name)
 
 
-def display_current_score(history, total_rounds):
+def display_current_score(history, total_rounds, user_name):
     if history['user'] + history['computer'] == 0:
-        prompt("Current Score: User : 0, Computer : 0")
+        summary = "Current Score: user : 0, Computer : 0"
     else:
         leader, lagger = get_leader_lagger(history)
-        last = history['last_match']
-        game_remaining = total_rounds - history['user'] - history['computer']
-        lead = abs(history['user'] - history['computer'])
-
+        games_remaining = get_games_remaing(total_rounds, history)
+        
         if leader:
+            lead = get_lead(history)
             summary = "".join([
-                f"{leader} leads the {lagger} by ",
-                f"{lead} points with {game_remaining} games remaining."
+                f"{leader} leads {lagger} by ",
+                f"{lead} with {games_remaining} remaining."
             ])
         else:
+            games_won = get_games_won(history)
             summary = "".join([
-                f"With {game_remaining} games to go, the game is tied with ",
-                f"each player winning {history['user']} games."
-            ])
-        print(summary.capitalize())
+                f"With {games_remaining} to go, the game is tied with ",
+                f"each player winning {games_won}."
+            ]).capitalize()
+
+    print(summary.replace('user', user_name))
 
 def get_leader_lagger(history):
     if history['user'] > history['computer']:
-        return 'user', 'computer'
+        return 'user', 'Computer'
     elif history['user'] < history['computer']:
-        return 'computer', 'user'
+        return 'Computer', 'user'
     else:
         return None, None
+    
+def get_games_remaing(total_rounds, history):
+    game_remaining = total_rounds - history['user'] - history['computer']
+    game_remaing_suffix =  'games' if game_remaining > 1 else 'game'
+    return f'{game_remaining} {game_remaing_suffix}'
 
-def get_user_move(moves):
+def get_lead(history):
+    lead = abs(history['user'] - history['computer'])
+    lead_suffix =  'points' if lead > 1 else 'point'
+    return f'{lead} {lead_suffix}'
+
+def get_games_won(history):
+    games_won = history['user']
+    games_won_suffix = 'games' if games_won > 1 else 'game'
+    return f'{games_won} {games_won_suffix}'
+
+def get_user_move(moves, user_name):
     choose_msg  = RPS_COMMENTS['human_move_choose']
     list_choice_msg = '\n'.join([f'{key} for {val}' for key, val in moves.items()])
     comb_msg = choose_msg + '\n' + list_choice_msg + "\n"
@@ -340,11 +370,14 @@ def get_user_move(moves):
 
     user_choice = get_valid_input(comb_msg, invalid_choice_msg, moves)
     user_move = moves[user_choice]
-    display_move("user", user_move)
+    display_move("user", user_move, user_name)
     return user_move
 
-def get_computer_move(choices):
+def get_computer_move(choices, game_mode = None, user_move = None):
     list_of_moves = list(choices.values())
+    if game_mode == "No Tie":
+        user_move_index = list_of_moves.index(user_move)
+        list_of_moves.pop(user_move_index)
     computer_move = random.choice(list_of_moves)
     display_move("computer", computer_move)
     return computer_move
@@ -357,26 +390,29 @@ def identify_winner(user_move, computer_move, winning_moves):
     else:
         return None
 
-def display_round_result(winner, user_move, computer_move, winning_moves):
+def display_round_result(winner, user_move, computer_move, winning_moves,
+                         user_name):
     if winner is None:
-        msg = f"User and computer have both chosen {user_move}"
-        prompt(msg, prefix_space = True)
-        prompt(RPS_COMMENTS["tie"])
+        move_msg = f"user and Computer have both chosen {user_move}"
+        result_msg = RPS_COMMENTS["tie"]
     elif winner == "user":
         action = winning_moves[user_move][computer_move]
-        msg = f"Users {user_move} {action} the computer's {computer_move}"
-        prompt(msg, prefix_space= True)
-        prompt(RPS_COMMENTS['user_wins'])
+        move_msg = f"user's {user_move} {action} computer's {computer_move}"
+        result_msg = RPS_COMMENTS['user_wins'].replace('user', user_name)
     else:
         action = winning_moves[computer_move][user_move]
-        msg = f"Computers {computer_move} {action} the user's {user_move}"
-        prompt(msg, prefix_space= True)
-        prompt(RPS_COMMENTS['computer_wins'])
+        move_msg = f"Computer's {computer_move} {action} user's {user_move}"
+        result_msg = RPS_COMMENTS['computer_wins']
+    move_msg = move_msg.replace('user', user_name)
+    prompt(move_msg, prefix_space = True)
+    prompt(result_msg)
 
 ## common new game functions
-def display_move(user, move):
+def display_move(user, move, user_name = None):
     prefix_space = user == "user" 
     msg = f'{RPS_COMMENTS[f'{user}_move']}{move}'
+    if user_name:
+        msg = msg.replace('user', user_name)
     prompt(msg, prefix_space = prefix_space)
 
 #################### quit game functions
@@ -394,9 +430,9 @@ RPS_SETTINGS = load_rps_files("rps_config.json")
 
 PERSONALITY = RPS_SETTINGS['AI_personality']
 NO_OF_ROUNDS = RPS_SETTINGS["no_of_rounds"]
-PLAYER_NAME = RPS_SETTINGS["name_of_player"]
+PLAYER_NAME = RPS_SETTINGS["name_of_player"].capitalize()
 GAME_MODE = RPS_SETTINGS["game_mode"]
-GAME_HISTORY_PATH = RPS_SETTINGS['game_history_path']
+GAME_HISTORY_PATH = RPS_SETTINGS['game_history_filename']
 MOVE_CHOICE = RPS_SETTINGS['move_choice']
 WINNING_MOVES = RPS_SETTINGS['rules']
 MAIN_SCREEN_OPTIONS = RPS_SETTINGS['main_screen_menu']
@@ -419,8 +455,7 @@ while True:
                 break
         case 'new_game':
             while True:
-                continue_status = start_new_game(MOVE_CHOICE, WINNING_MOVES, 
-                                                 NO_OF_ROUNDS)
+                continue_status = start_new_game(RPS_SETTINGS)
                 if not(continue_status):
                     break
         case 'quit_game':

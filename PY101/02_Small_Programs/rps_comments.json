@@ -8,17 +8,17 @@
         "\tEnter s for high scores",
         "\tEnter q to quit game"
       ],
-      "intro_error": "Invalid selection. Please choose one of h, c, n or s",
-      "new_game_intro": "Let's start a new game between user vs computer",
+      "intro_error": "Invalid selection. Please choose one of h, c, n, s or q",
+      "new_game_intro": "Let's start a new game between user vs Computer",
       "new_round_intro": "Let's start Round ",
       "human_move_choose": "Please Choose one of the following:",
       "human_move_error": "Invalid selection. Please choose from the following only:",
       "incorrect_validation_method": "Error! Incorrect validation methodology given",
-      "user_move": "Player has decided to go with: ",
+      "user_move": "user has decided to go with: ",
       "computer_move": "Computer has decided to go with: ",
       "tie": "Looks like it's a draw",
-      "user_wins": "The winner is the user",
-      "computer_wins": "The winner is the computer",
+      "user_wins": "The winner is user",
+      "computer_wins": "The winner is Computer",
       "help_screen_intro": [
         "Welcome to Rock-Paper-Scissors-Lizard-Spock Help Screen!",
         "Need a quick refresher? You're in the right place."
@@ -43,7 +43,7 @@
         "\tEnter r to edit the number of Rounds in the tournament",
         "\tEnter n to edit the Player Name",
         "\tEnter m to edit the game mode",
-        "\tEnter g to edit the game path",
+        "\tEnter g to edit the game history file",
         "",
         "\tYou can also enter q to go back to the main menu",
         "",
@@ -65,9 +65,8 @@
       "continue_round_tie" : "Press any key to continue the round, or 'q' to quit",
 
       "user_quit_early" : "User has ended the game",
-      "user_won" : "User has Won",
-      "user_lost" : "Computer has Won"
-
+      "user_won" : "User has Won the tournament",
+      "user_lost" : "Computer has Won the tournament"
     }
   }
   

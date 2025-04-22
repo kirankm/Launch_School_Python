@@ -1,9 +1,9 @@
 {
   "AI_personality": "Normal",
   "no_of_rounds": 3,
-  "name_of_player": "kiran",
-  "game_mode": "Normal",
-  "game_history_path": null,
+  "name_of_player": "ravi",
+  "game_mode": "Default",
+  "game_history_filename": "history",
   "rules": {
     "SCISSORS": {
       "PAPER": "CUTS",
@@ -45,7 +45,7 @@
     "r": "edit_no_of_rounds",
     "n": "edit_player_name",
     "m": "edit_game_mode",
-    "g": "edit_game_path",
+    "g": "edit_game_history_file",
     "q": null
   },
   "AI_personality_options": [
@@ -54,7 +54,7 @@
     "Aggressive"
   ],
   "game_mode_options": [
-    "Normal",
-    "No Ties Mode"
+    "Default",
+    "No Tie"
   ]
 }

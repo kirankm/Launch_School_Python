@@ -222,52 +222,113 @@ def update_and_save_config(current_settings, updated_settings):
 ############################# new game functions
 def start_new_game(move_choice, winning_moves, no_of_rounds):
     new_game_introduction()
-    score = {'user': 0 , 'computer': 0}
-    while should_continue_playing(score, no_of_rounds):
-        round_winner = play_new_round(move_choice, winning_moves, score)
-        update_score(score, round_winner)
-        should_continue(score)
-    display_final_result(score)
-
+    history = initialize_game_history()
+    while check_game_incomplete(history, no_of_rounds):
+        round_winner = play_new_round(move_choice, winning_moves, history,
+                                                    no_of_rounds)
+        update_history(history, round_winner)
+        continue_next_round = should_continue_next_round(history, 
+                                                         no_of_rounds)
+        if continue_next_round == 'q':
+            break
+    display_final_result(history, no_of_rounds)
+    return should_play_again() == "y"
+     
 def new_game_introduction():
     intro_msg = RPS_COMMENTS['new_game_intro']
     clear_screen()
     prompt(intro_msg)
 
-def should_continue_playing(curr_score, total_rounds):
+def initialize_game_history():
+    return {'user': 0 , 'computer': 0, 'last_match':None}
+
+def check_game_incomplete(curr_history, total_rounds):
     cutoff = math.ceil(total_rounds / 2)
-    return (curr_score['user'] < cutoff) and (curr_score['computer'] < cutoff)
+    return (curr_history['user'] < cutoff) and (curr_history['computer'] < cutoff)
 
-def update_score(score_dict, winner):
-    if winner in score_dict:
-        score_dict[winner] += 1
-
-def should_continue(score):
-    display_current_score(score)
-    input("press enter to continue to next round:")
-
-def display_final_result(score_dict):
-    if score_dict['user'] > score_dict['computer']:
-        print("User has Won")
+def update_history(curr_history, winner):
+    if winner in curr_history:
+        curr_history[winner] += 1
+        curr_history['last_match'] = winner
     else:
-        print("Computer has Won")
+        curr_history['last_match'] = "tie"
 
-def play_new_round(move_choice, winning_moves, score):
-    new_round_introduction()
-    display_current_score(score)
+def should_continue_next_round(curr_history, no_of_rounds):
+    if (check_game_incomplete(curr_history, no_of_rounds)):
+        if curr_history['last_match'] != 'tie':
+            msg = RPS_COMMENTS['continue_round_win']
+        else:
+            msg = RPS_COMMENTS['continue_round_tie']
+        prompt(msg, prefix_space = True)
+        user_input = input()
+        return user_input
+
+def display_final_result(game_history, no_of_rounds):
+    if check_game_incomplete(game_history, no_of_rounds):
+        prompt(RPS_COMMENTS['user_quit_early'], True)
+    elif game_history['user'] > game_history['computer']:
+        prompt(RPS_COMMENTS['user_won'], True)
+    else:
+        prompt(RPS_COMMENTS['user_lost'], True)
+
+def should_play_again():
+    input_msg = RPS_COMMENTS["play_tournament_again"]
+    error_msg = RPS_COMMENTS["play_tournament_invalid_input"]
+    user_choice = get_valid_input(input_msg, error_msg, 
+                                  validate_should_continue)
+    return user_choice[0].lower() ## Make comment based on win or loss
+
+def validate_should_continue(user_input):
+    valid_values = ['yes', 'y', 'no', 'n']
+    return user_input.lower() in valid_values
+
+def play_new_round(move_choice, winning_moves, game_history, total_rounds):
+    new_round_introduction(game_history, total_rounds)
     user_move = get_user_move(move_choice)
     computer_move = get_computer_move(move_choice)
     winner = identify_winner(user_move, computer_move, winning_moves)
-    display_round_result(winner, user_move, computer_move)
+    display_round_result(winner, user_move, computer_move, winning_moves)
     return winner
 
-def new_round_introduction():
-    intro_msg = RPS_COMMENTS['new_game_intro']
-    clear_screen()
-    prompt(intro_msg)
+def new_round_introduction(game_history, total_rounds):
+    intro_msg = RPS_COMMENTS['new_round_intro']
+    total_games = game_history['user'] + game_history['computer']
+    intro_msg = f"{intro_msg}{total_games + 1}"
+    if (game_history['last_match'] in ['user', 'computer']):
+        clear_screen()
+    if game_history['last_match'] != 'tie':
+        prompt(intro_msg, prefix_space = True)
+        display_current_score(game_history, total_rounds)
 
-def display_current_score(score):
-    prompt(score)
+
+def display_current_score(history, total_rounds):
+    if history['user'] + history['computer'] == 0:
+        prompt("Current Score: User : 0, Computer : 0")
+    else:
+        leader, lagger = get_leader_lagger(history)
+        last = history['last_match']
+        game_remaining = total_rounds - history['user'] - history['computer']
+        lead = abs(history['user'] - history['computer'])
+
+        if leader:
+            summary = "".join([
+                f"{leader} leads the {lagger} by ",
+                f"{lead} points with {game_remaining} games remaining."
+            ])
+        else:
+            summary = "".join([
+                f"With {game_remaining} games to go, the game is tied with ",
+                f"each player winning {history['user']} games."
+            ])
+        print(summary.capitalize())
+
+def get_leader_lagger(history):
+    if history['user'] > history['computer']:
+        return 'user', 'computer'
+    elif history['user'] < history['computer']:
+        return 'computer', 'user'
+    else:
+        return None, None
 
 def get_user_move(moves):
     choose_msg  = RPS_COMMENTS['human_move_choose']
@@ -296,23 +357,27 @@ def identify_winner(user_move, computer_move, winning_moves):
     else:
         return None
 
-def display_round_result(result, user_move, computer_move):
-    if result is None:
+def display_round_result(winner, user_move, computer_move, winning_moves):
+    if winner is None:
         msg = f"User and computer have both chosen {user_move}"
+        prompt(msg, prefix_space = True)
         prompt(RPS_COMMENTS["tie"])
-    elif result == "user":
-        msg = f"Users {user_move} has defeated the computer's {computer_move}"
+    elif winner == "user":
+        action = winning_moves[user_move][computer_move]
+        msg = f"Users {user_move} {action} the computer's {computer_move}"
         prompt(msg, prefix_space= True)
         prompt(RPS_COMMENTS['user_wins'])
     else:
-        msg = f"Users {user_move} has lost to the computer's {computer_move}"
+        action = winning_moves[computer_move][user_move]
+        msg = f"Computers {computer_move} {action} the user's {user_move}"
         prompt(msg, prefix_space= True)
         prompt(RPS_COMMENTS['computer_wins'])
 
 ## common new game functions
 def display_move(user, move):
+    prefix_space = user == "user" 
     msg = f'{RPS_COMMENTS[f'{user}_move']}{move}'
-    prompt(msg)
+    prompt(msg, prefix_space = prefix_space)
 
 #################### quit game functions
 def quit_game():
@@ -353,7 +418,11 @@ while True:
                 prompt(RPS_COMMENTS['save_config_exit'])
                 break
         case 'new_game':
-            start_new_game(MOVE_CHOICE, WINNING_MOVES, NO_OF_ROUNDS)
+            while True:
+                continue_status = start_new_game(MOVE_CHOICE, WINNING_MOVES, 
+                                                 NO_OF_ROUNDS)
+                if not(continue_status):
+                    break
         case 'quit_game':
             quit_game()
             break

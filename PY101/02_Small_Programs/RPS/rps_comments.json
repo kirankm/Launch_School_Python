@@ -1,7 +1,7 @@
 {
     "Normal": {
       "intro": [
-        "Welcome to the Rock Paper Scissors Game",
+        "Welcome to the Rock Paper Scissors Lizard Spock Game",
         "\tEnter n for new game",
         "\tEnter c for config",
         "\tEnter h for help",

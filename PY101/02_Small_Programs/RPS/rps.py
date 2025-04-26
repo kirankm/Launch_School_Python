@@ -260,7 +260,7 @@ def update_and_save_config(current_settings, updated_settings):
 ############################# new game functions
 def start_new_game(settings):
     player_name = settings["name_of_player"].capitalize()
-    new_game_introduction(player_name)
+    new_game_introduction(player_name, settings)
     history = initialize_game_history(settings, player_name)
     while check_game_incomplete(history, settings["no_of_rounds"]):
         round_winner = play_new_round(settings, history, player_name)
@@ -274,10 +274,23 @@ def start_new_game(settings):
         save_game_history(settings, history)
     return should_play_again() == "y"
 
-def new_game_introduction(user_name):
+def new_game_introduction(user_name, settings):
     intro_msg = RPS_COMMENTS['new_game_intro'].replace('user', user_name)
     clear_screen()
     prompt(intro_msg)
+    display_current_game_settings(user_name, settings)
+
+def display_current_game_settings(user_name, settings):
+    current_no_of_rounds = settings["no_of_rounds"]
+    current_ai_personality = settings["AI_personality"]
+    current_game_mode = settings["game_mode"]
+    prompt(f"Current Player Name is {user_name}", prefix_space = True)
+    prompt(f"Current Number of Rounds in a game is {current_no_of_rounds}")
+    prompt(f"Current personality of the AI is {current_ai_personality}")
+    prompt(f"Current game mode is {current_game_mode}")
+    prompt("Go to Config from Main Menu to edit these settings", True)
+
+
 
 def initialize_game_history(settings, player_name):
     game_history = {'user': 0 , 'computer': 0, 'last_match':None}
@@ -594,7 +607,7 @@ def print_user_result_row(all_win_stats, user_name):
     line2 = (27*"*-").center(55)[:54]
     print(line1)
     print(line2)
-## Check Achievements functions
+
 #################### quit game functions
 def quit_game():
     clear_screen()

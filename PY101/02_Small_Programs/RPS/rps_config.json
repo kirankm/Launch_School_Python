@@ -2,7 +2,7 @@
   "AI_personality": "Normal",
   "no_of_rounds": 5,
   "name_of_player": "Kiran",
-  "game_mode": "No Tie",
+  "game_mode": "Default",
   "game_history_filename": "history",
   "rules": {
     "SCISSORS": {

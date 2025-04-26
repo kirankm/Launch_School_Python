@@ -39,11 +39,11 @@
         "Here you can edit the followings settings in the game"
       ],
       "config_screen_options": [
-        "\tEnter p to edit the AI Personality",
+        "\tEnter p to edit the AI Personality. It can change from friendly to normal to very aggressive.",
         "\tEnter r to edit the number of Rounds in the tournament",
         "\tEnter n to edit the Player Name",
-        "\tEnter m to edit the game mode",
-        "\tEnter g to edit the game history file",
+        "\tEnter m to edit the game mode. In the no draw mode, computer will choose a different move than the user",
+        "\tEnter g to edit the game history file. The game history file stores all your past game records.",
         "",
         "\tYou can also enter q to go back to the main menu",
         "",

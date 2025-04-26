@@ -209,8 +209,7 @@
       ],
       "save_config_exit": "Changes saved—start over to see them!",
       "play_tournament_again": [
-        "Ready for another? Enter yes(y) or no(n)",
-        "No? Back to menu!"
+        "Ready for another? Enter yes(y) or no(n)", "No? Back to menu!"
       ],
       "play_tournament_invalid_input": [
         "Invalid input! yes(y) or no(n)? Try again!"

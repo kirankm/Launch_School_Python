@@ -1013,5 +1013,126 @@
         }
       ]
     ]
+  },
+  {
+    "user": 3,
+    "computer": 2,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 1,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "PAPER"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 0,
+    "last_match": null,
+    "game_mode": "Default",
+    "AI_personality": "Aggressive",
+    "no_of_rounds": 0,
+    "player_name": "Jithu",
+    "moves": []
   }
 ]

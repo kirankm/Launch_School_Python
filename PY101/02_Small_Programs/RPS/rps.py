@@ -198,13 +198,17 @@ def edit_game_mode(new_config):
 def edit_player_name(new_config):
     clear_screen()
     show_current_val(new_config, "Player Name", "name_of_player")
-    prompt("Choose the new value for User Name")
+    prompt(["Choose the new value for User Name.",
+            "Leading and Lagging white spaces will be removed",
+            "Names longer than 32 characters will be truncated"
+            ])
     user_chosen_value = get_new_value_from_user(is_len_gt_0,
                                                 "Player Name")
+    user_chosen_value = user_chosen_value.strip()[:32]
     new_config["name_of_player"] = user_chosen_value.capitalize()
 
 def is_len_gt_0(string):
-    return len(string) > 0
+    return len(string.strip()) > 0
 
 def edit_game_history_file(new_config):
     clear_screen()
@@ -227,13 +231,17 @@ def is_valid_filename(name):
 def edit_no_of_rounds(new_config):
     clear_screen()
     show_current_val(new_config, "Number of Rounds", "no_of_rounds")
-    prompt("Choose the new value for Number of Rounds")
+    prompt(["Choose the new value for Number of Rounds",
+            "Only Odd Numbers are allowed"
+            ])
     user_chosen_value = get_new_value_from_user(is_valid_int,
                                                 "Number of Rounds")
     new_config["no_of_rounds"] = int(user_chosen_value)
 
 def is_valid_int(string):
-    return string.strip().isdigit() and string.strip() != ''
+    if string.strip().isdigit() and string.strip() != '':
+        return int(string) %2 ==  1
+    return False
 
 def remove_redundant_updates(settings, new_config):
     return {
@@ -521,12 +529,15 @@ def get_selected_players(user_statistics, sort_fn = None, reverse = True,
                                                             top_n = 5):
     match sort_fn:
         case "w":
-            sort_fn = lambda x: user_statistics[x].get('user', 0)
+            def sort_fn(x):
+                return user_statistics[x].get('user', 0)
         case 'g':
-            sort_fn = lambda x: user_statistics[x].get('user', 0) + \
+            def sort_fn(x):
+                return user_statistics[x].get('user', 0) + \
                                 user_statistics[x].get('computer', 0)
         case 'p':
-            sort_fn = lambda x: user_statistics[x].get('user', 0) / \
+            def sort_fn(x):
+                return user_statistics[x].get('user', 0) / \
                                 (user_statistics[x].get('computer', 0) +
                                  user_statistics[x].get('user', 0))
 
@@ -602,13 +613,12 @@ def wave_hands_bye():
     """
     ]
 
-    for _ in range(10):
+    for _ in range(6):
         for frame in frames:
             clear_screen()
             prompt(RPS_COMMENTS["exit_game"])
             print(frame)
             time.sleep(0.2)
-
 
 # Pre Load Game Files and Variables
 RPS_SETTINGS = load_rps_files("rps_config.json")

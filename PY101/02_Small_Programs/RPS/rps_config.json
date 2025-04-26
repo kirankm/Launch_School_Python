@@ -1,8 +1,8 @@
 {
   "AI_personality": "Normal",
   "no_of_rounds": 5,
-  "name_of_player": "Jithu",
-  "game_mode": "Default",
+  "name_of_player": "Kiran",
+  "game_mode": "No Tie",
   "game_history_filename": "history",
   "rules": {
     "SCISSORS": {

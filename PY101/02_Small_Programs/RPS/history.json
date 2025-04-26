@@ -1134,5 +1134,34 @@
     "no_of_rounds": 0,
     "player_name": "Jithu",
     "moves": []
+  },
+  {
+    "user": 3,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "ROCK"
+        }
+      ]
+    ]
   }
 ]

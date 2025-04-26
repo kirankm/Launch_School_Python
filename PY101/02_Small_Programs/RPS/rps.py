@@ -262,14 +262,10 @@ def start_new_game(settings):
     player_name = settings["name_of_player"].capitalize()
     new_game_introduction(player_name, settings)
     history = initialize_game_history(settings, player_name)
-    while check_game_incomplete(history, settings["no_of_rounds"]):
-        round_winner = play_new_round(settings, history, player_name)
-        update_history(history, round_winner)
-        continue_next_round = should_continue_next_round(history,
-                                                    settings["no_of_rounds"])
-        if continue_next_round == 'q':
-            break
+
+    play_new_tournament(history, settings, player_name)
     display_final_result(history, settings["no_of_rounds"], player_name)
+
     if not check_game_incomplete(history, settings["no_of_rounds"]):
         save_game_history(settings, history)
     return should_play_again() == "y"
@@ -290,8 +286,6 @@ def display_current_game_settings(user_name, settings):
     prompt(f"Current game mode is {current_game_mode}")
     prompt("Go to Config from Main Menu to edit these settings", True)
 
-
-
 def initialize_game_history(settings, player_name):
     game_history = {'user': 0 , 'computer': 0, 'last_match':None}
     game_history['game_mode'] = settings['game_mode']
@@ -301,17 +295,18 @@ def initialize_game_history(settings, player_name):
     game_history['moves'] = []
     return game_history
 
+def play_new_tournament(history, settings, player_name):
+    while check_game_incomplete(history, settings["no_of_rounds"]):
+        play_new_round(settings, history, player_name)
+        continue_next_round = should_continue_next_round(history,
+                                                    settings["no_of_rounds"])
+        if continue_next_round == 'q':
+            break
+
 def check_game_incomplete(curr_history, total_rounds):
     cutoff = math.ceil(total_rounds / 2)
     return (curr_history['user'] < cutoff) and \
             (curr_history['computer'] < cutoff)
-
-def update_history(curr_history, winner):
-    if winner in curr_history:
-        curr_history[winner] += 1
-        curr_history['last_match'] = winner
-    else:
-        curr_history['last_match'] = "tie"
 
 def should_continue_next_round(curr_history, no_of_rounds):
     if (check_game_incomplete(curr_history, no_of_rounds)):
@@ -356,7 +351,7 @@ def play_new_round(settings, game_history, user_name):
     winner = identify_winner(user_move, computer_move, settings['rules'])
     display_round_result(winner, user_move, computer_move, settings['rules'],
                         user_name)
-    update_game_history(game_history, user_move, computer_move)
+    update_game_history(game_history, user_move, computer_move, winner)
     return winner
 
 def new_round_introduction(game_history, total_rounds, user_name):
@@ -461,12 +456,23 @@ def display_round_result(winner, user_move, computer_move, winning_moves,
     prompt(move_msg, prefix_space = True)
     prompt(result_msg)
 
-def update_game_history(history, user_move, computer_move):
+def update_game_history(history, user_move, computer_move, winner):
+    update_history_moves(history, user_move, computer_move)
+    update_history_winner(history, winner)
+
+def update_history_moves(history, user_move, computer_move):
     game_dict = {'user': user_move, 'computer': computer_move}
     if history['last_match'] == 'tie':
         history['moves'][-1].append(game_dict)
     else:
         history['moves'].append([game_dict])
+
+def update_history_winner(curr_history, winner):
+    if winner in curr_history:
+        curr_history[winner] += 1
+        curr_history['last_match'] = winner
+    else:
+        curr_history['last_match'] = "tie"
 
 ## common new game functions
 def display_move(user, move, user_name = None):

@@ -63,7 +63,7 @@ def check_dict_validation(value_to_check, validation_dict):
 
 def write_to_json_file(file_path, value):
     with open(file_path,'w') as f:
-        json.dump(value, f, indent = 2)
+        json.dump(value, f, indent = JSON_INDENT)
 
 def load_json_file(json_file_path):
     with open(json_file_path,'r') as f:
@@ -252,10 +252,9 @@ def remove_redundant_updates(settings, new_config):
 
 def update_and_save_config(current_settings, updated_settings):
     json_file_path = get_json_file_path("rps_config.json")
-
     new_settings = current_settings | updated_settings
-    with open(json_file_path,'w') as f:
-        json.dump(new_settings, f, indent = 2)
+    
+    write_to_json_file(json_file_path, new_settings)
 
 ############################# new game functions
 def start_new_game(settings):
@@ -593,24 +592,24 @@ def get_sort_params(choice, curr_sort_fn, curr_reverse):
             return None, None
 
 def print_table_header():
-    line0 = (27*"*-").center(55)[:54]
-    col1 = 'Name'.center(15)
-    col2 = 'Wins'.center(15)
-    col3 = 'Losses'.center(15)
+    line0 = (int(TABLE_WIDTH / 2) * "*-").center(TABLE_WIDTH) + "*"
+
+    col1 = 'Name'.center(COLUMN_WIDTH)
+    col2 = 'Wins'.center(COLUMN_WIDTH)
+    col3 = 'Losses'.center(COLUMN_WIDTH)
     line1 = f"| {col1} | {col2} | {col3} |"
-    line2 = (27*"*-").center(55)[:54]
 
     print(line0)
     print(line1)
-    print(line2)
+    print(line0)
 
 def print_user_result_row(all_win_stats, user_name):
-    display_name = user_name[:15].center(15)
+    display_name = user_name[:NAME_DISPLAY_WIDTH].center(COLUMN_WIDTH)
     user_data = all_win_stats[user_name]
-    wins = str(user_data.get('user', 0)).center(15)
-    loss = str(user_data.get('computer', 0)).center(15)
+    wins = str(user_data.get('user', 0)).center(COLUMN_WIDTH)
+    loss = str(user_data.get('computer', 0)).center(COLUMN_WIDTH)
     line1 = f"| {display_name} | {wins} | {loss} |"
-    line2 = (27*"*-").center(55)[:54]
+    line2 = (int(TABLE_WIDTH / 2) * "*-").center(TABLE_WIDTH) + "*"
     print(line1)
     print(line2)
 
@@ -634,12 +633,12 @@ def wave_hands_bye():
     """
     ]
 
-    for _ in range(6):
+    for _ in range(ANIMATION_CYCLES):
         for frame in frames:
             clear_screen()
             prompt(RPS_COMMENTS["exit_game"])
             print(frame)
-            time.sleep(0.2)
+            time.sleep(ANIMATION_FRAME_DELAY)
 
 # Pre Load Game Files and Variables
 RPS_SETTINGS = load_rps_files("rps_config.json")
@@ -650,6 +649,14 @@ WINNING_MOVES = RPS_SETTINGS['rules']
 MAIN_SCREEN_OPTIONS = RPS_SETTINGS['main_screen_menu']
 
 RPS_COMMENTS = load_rps_files("rps_comments.json")[PERSONALITY]
+
+#UI Constants
+TABLE_WIDTH = 54
+NAME_DISPLAY_WIDTH = 15
+COLUMN_WIDTH = 15
+ANIMATION_FRAME_DELAY = 0.2
+ANIMATION_CYCLES = 5
+JSON_INDENT = 2
 
 ############ Program Flow
 while True:

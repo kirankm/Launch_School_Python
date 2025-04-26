@@ -529,18 +529,20 @@ def get_selected_players(user_statistics, sort_fn = None, reverse = True,
                                                             top_n = 5):
     match sort_fn:
         case "w":
-            def sort_fn(x):
+            def sort_win(x):
                 return user_statistics[x].get('user', 0)
+            sort_fn = sort_win
         case 'g':
-            def sort_fn(x):
+            def sort_games(x):
                 return user_statistics[x].get('user', 0) + \
                                 user_statistics[x].get('computer', 0)
+            sort_fn = sort_games
         case 'p':
-            def sort_fn(x):
+            def sort_win_perc(x):
                 return user_statistics[x].get('user', 0) / \
                                 (user_statistics[x].get('computer', 0) +
                                  user_statistics[x].get('user', 0))
-
+            sort_fn = sort_win_perc
     if sort_fn:
         sorted_players = sorted(user_statistics, key = sort_fn,
                                 reverse = reverse)

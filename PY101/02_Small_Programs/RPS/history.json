@@ -1,0 +1,675 @@
+[
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Ravi",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 1,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 1,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 1,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "PAPER",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Kiran",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 3,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 2,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 2,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "SPOCK"
+        },
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Arjun",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "LIZARD"
+        },
+        {
+          "user": "LIZARD",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "R",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 1,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "R",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 0,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "R",
+    "moves": [
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "AI_personality": "Normal",
+  "no_of_rounds": 5,
+  "name_of_player": "R",
+  "game_mode": "Default",
+  "game_history_filename": "history",
+  "rules": {
+    "SCISSORS": {
+      "PAPER": "CUTS",
+      "LIZARD": "DECAPITATES"
+    },
+    "PAPER": {
+      "ROCK": "COVERS",
+      "SPOCK": "DISPROVES"
+    },
+    "ROCK": {
+      "LIZARD": "CRUSHES",
+      "SCISSORS": "CRUSHES"
+    },
+    "LIZARD": {
+      "SPOCK": "POISONS",
+      "PAPER": "EATS"
+    },
+    "SPOCK": {
+      "SCISSORS": "SMASHES",
+      "ROCK": "VAPORIZES"
+    }
+  },
+  "move_choice": {
+    "r": "ROCK",
+    "p": "PAPER",
+    "s": "SCISSORS",
+    "l": "LIZARD",
+    "sp": "SPOCK"
+  },
+  "main_screen_menu": {
+    "h": "help",
+    "c": "config",
+    "d": "display_stats",
+    "n": "new_game",
+    "q": "quit_game"
+  },
+  "config_edit_menu": {
+    "p": "edit_ai_personality",
+    "r": "edit_no_of_rounds",
+    "n": "edit_player_name",
+    "m": "edit_game_mode",
+    "g": "edit_game_history_file",
+    "q": null
+  },
+  "AI_personality_options": [
+    "Normal",
+    "Friendly",
+    "Aggressive"
+  ],
+  "game_mode_options": [
+    "Default",
+    "No Tie"
+  ]
+}

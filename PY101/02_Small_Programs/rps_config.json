@@ -1,7 +1,7 @@
 {
   "AI_personality": "Normal",
-  "no_of_rounds": 3,
-  "name_of_player": "ravi",
+  "no_of_rounds": 5,
+  "name_of_player": "R",
   "game_mode": "Default",
   "game_history_filename": "history",
   "rules": {
@@ -36,7 +36,7 @@
   "main_screen_menu": {
     "h": "help",
     "c": "config",
-    "s": "high_score",
+    "d": "display_stats",
     "n": "new_game",
     "q": "quit_game"
   },

@@ -61,8 +61,8 @@
         "Sorry, that is not a valid input.",
         "Enter yes(y) to play again, and no(n) to go back to the main menu"
       ],
-      "continue_round_win": "Press any key to continue to next round, or 'q' to quit",
-      "continue_round_tie": "Press any key to continue the round, or 'q' to quit",
+      "continue_round_win": "Press Enter to continue to next round, or enter 'q' to quit",
+      "continue_round_tie": "Press Enter to continue the round, or enter 'q' to quit",
       "user_quit_early": "User has ended the game",
       "user_won": "User has Won the tournament",
       "user_lost": "Computer has Won the tournament",
@@ -138,8 +138,8 @@
       "play_tournament_invalid_input": [
         "That input wasn't valid. Enter yes(y) or no(n), pretty please!"
       ],
-      "continue_round_win": "Press any key to move to the next round, or 'q' to stop",
-      "continue_round_tie": "Press any key to retry the round, or 'q' to stop",
+      "continue_round_win": "Press Enter to move to the next round, or enter 'q' to stop",
+      "continue_round_tie": "Press Enter to retry the round, or enter 'q' to stop",
       "user_quit_early": "You decided to end the game—thanks for playing!",
       "user_won": "You rocked the tournament! 🏆",
       "user_lost": "The Computer prevailed this time. You'll get 'em next time!",
@@ -215,8 +215,8 @@
       "play_tournament_invalid_input": [
         "Invalid input! yes(y) or no(n)? Try again!"
       ],
-      "continue_round_win": "Any key to keep going, 'q' to quit—your choice!",
-      "continue_round_tie": "Any key to retry, 'q' to quit—decide!",
+      "continue_round_win": "Enter to keep going, enter 'q' to quit—your choice!",
+      "continue_round_tie": "Enter to retry, enter 'q' to quit—decide!",
       "user_quit_early": "You copped out early—pathetic!",
       "user_won": "You barely won—don’t get cocky!",
       "user_lost": "You lost—better luck next time!",

@@ -671,5 +671,347 @@
         }
       ]
     ]
+  },
+  {
+    "user": 3,
+    "computer": 1,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "R",
+    "moves": [
+      [
+        {
+          "user": "SPOCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "LIZARD"
+        },
+        {
+          "user": "SPOCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Swathi",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "PAPER"
+        },
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "SPOCK",
+          "computer": "SPOCK"
+        },
+        {
+          "user": "SCISSORS",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 2,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "SCISSORS"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "ROCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 0,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Swathi",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "LIZARD"
+        },
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "LIZARD"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Swathi",
+    "moves": [
+      [
+        {
+          "user": "LIZARD",
+          "computer": "ROCK"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "PAPER"
+        },
+        {
+          "user": "PAPER",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SPOCK",
+          "computer": "SPOCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "LIZARD",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "PAPER",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "ROCK"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 3,
+    "computer": 2,
+    "last_match": "user",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "ROCK"
+        },
+        {
+          "user": "ROCK",
+          "computer": "LIZARD"
+        }
+      ],
+      [
+        {
+          "user": "ROCK",
+          "computer": "SCISSORS"
+        }
+      ]
+    ]
+  },
+  {
+    "user": 2,
+    "computer": 3,
+    "last_match": "computer",
+    "game_mode": "Default",
+    "AI_personality": "Normal",
+    "no_of_rounds": 5,
+    "player_name": "Jithu",
+    "moves": [
+      [
+        {
+          "user": "ROCK",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "LIZARD",
+          "computer": "LIZARD"
+        },
+        {
+          "user": "SCISSORS",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SCISSORS"
+        },
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "PAPER"
+        }
+      ],
+      [
+        {
+          "user": "SCISSORS",
+          "computer": "SPOCK"
+        }
+      ]
+    ]
   }
 ]

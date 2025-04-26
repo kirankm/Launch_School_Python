@@ -77,158 +77,163 @@
       ],
       "sort_table_error": "Invalid selection. Please choose one of w, g, p, r or q"
     },
+  
     "Friendly": {
       "intro": [
-        "Hey friend! Welcome to the Rock Paper Scissors Game! 😊",
-        "\tEnter n to start a fun new game",
-        "\tEnter c to tweak your settings",
-        "\tEnter h if you need any help!",
-        "\tEnter d to check out your awesome stats",
-        "\tEnter q if you must leave (we'll miss you!)"
+        "✨ Hey friend, welcome to Rock-Paper-Scissors-Lizard-Spock! ✨",
+        "\tEnter n for a cheerful new game",
+        "\tEnter c to tweak things just how you like them",
+        "\tEnter h if you’d love a quick tour",
+        "\tEnter d to admire your awesome stats",
+        "\tEnter q to say goodbye (we’ll miss you!)"
       ],
-      "intro_error": "Oops! That doesn't look right. Please choose one of h, c, n, s or q, pretty please!",
-      "new_game_intro": "Yay! A new game between you and the Computer—let's go!",
+      "intro_error": "Oops! That choice doesn’t exist. Try h, c, n, s or q 😊",
+      "new_game_intro": "Fantastic! Let’s kick off a brand-new game: you vs. Computer. Have fun!",
       "new_round_intro": "Here we go—Round ",
-      "human_move_choose": "What move would you like to make? 😊",
-      "human_move_error": "Hmm, that didn't work. Please pick one of the listed options!",
-      "incorrect_validation_method": "Whoops! That validation method isn't valid.",
-      "user_move": "Great choice! You picked: ",
-      "computer_move": "The Computer went with: ",
-      "tie": "It's a tie—so close!",
-      "user_wins": "Congratulations, you win! 🎉",
-      "computer_wins": "Oh no, the Computer wins this time. Try again!",
+      "human_move_choose": "Pick your move, superstar:",
+      "human_move_error": "That one isn’t on the list—give it another shot:",
+      "incorrect_validation_method": "Uh-oh, that validation method seems off. Let’s fix it together!",
+      "user_move": "You chose: ",
+      "computer_move": "Computer picked: ",
+      "tie": "Great minds think alike—it's a friendly draw!",
+      "user_wins": "Woo-hoo! You take the round 🎉",
+      "computer_wins": "Computer wins this round—no worries, you’ve got this!",
       "help_screen_intro": [
-        "Welcome to the Friendly Help Screen! 🥳",
-        "Need a quick refresher? I'm here for you."
+        "🌟 Friendly Help Center 🌟",
+        "Need a reminder of the rules? I’m happy to help!"
       ],
-      "moves_menu": "Here are all the move options you can pick:",
+      "moves_menu": "Here are all the playful moves you can choose",
       "additional_options": [
-        "You’ve got some extra options too:",
-        "Enter c in the main menu to edit settings",
-        "Enter s to see your game history",
-        "Enter q to exit (sad to see you go!)",
-        "During a game, enter h to review rules",
-        "During a game, enter q to quit the game"
+        "Handy extra options for you:",
+        "Main menu • c → adjust settings to your liking",
+        "Main menu • s → view your proud game history",
+        "Main menu • q → leave the game (come back soon!)",
+        "In-game • h → glance at rules & moves anytime",
+        "In-game • q → gracefully bow out mid-match"
       ],
-      "exit_help": "Enter q to head back to the main menu",
-      "exit_game": "Awww, see you next time! Thanks for playing! 😊",
+      "exit_help": "Press q to hop back to the main menu 😊",
+      "exit_game": "Thanks for playing—come back anytime, friend!",
       "config_screen_intro": [
-        "Config Time! 🎛️",
-        "Here you can make this game yours"
+        "🎛️ Friendly Config Zone 🎛️",
+        "Tailor any of these settings so the game feels perfect!"
       ],
       "config_screen_options": [
-        "\tPress p to pick your AI Personality",
-        "\tPress r to set the number of rounds",
-        "\tPress n to choose your Player Name",
-        "\tPress m to change the game mode",
-        "\tPress g to pick a different history file",
+        "\tEnter p to set the AI’s personality (friendly, normal, or aggressive—but we like friendly!)",
+        "\tEnter r to pick the number of tournament rounds that feel just right",
+        "\tEnter n to update your amazing player name",
+        "\tEnter m to choose the game mode—‘no-draw’ guarantees every turn has a winner",
+        "\tEnter g to pick a different history file for your cherished memories",
         "",
-        "\tOr press q to return to the main menu",
+        "\tPress q anytime to return to the main menu",
         "",
-        "\t(Advanced users: You can edit the config file directly—but be careful!)"
+        "\tAdvanced: edit rps_config directly (be gentle!)"
       ],
       "config_screen_invalid_selection": [
-        "Hmm, that wasn't an option. Please choose from below:"
+        "Hmm, that option isn’t here. Try one below:"
       ],
-      "save_config_exit": "Config saved! Start a new game to see your changes.",
+      "save_config_exit": "Settings saved! Restart a game to see your shiny new changes",
       "play_tournament_again": [
-        "Want another round of fun?",
-        "Enter yes(y) to play again or no(n) to go back to the menu"
+        "Play another tournament?",
+        "Enter yes(y) to keep the fun going, or no(n) for a break"
       ],
       "play_tournament_invalid_input": [
-        "That input wasn't valid. Enter yes(y) or no(n), pretty please!"
+        "I didn’t catch that.",
+        "Type yes(y) to play again, or no(n) to return to the menu"
       ],
-      "continue_round_win": "Press Enter to move to the next round, or enter 'q' to stop",
-      "continue_round_tie": "Press Enter to retry the round, or enter 'q' to stop",
-      "user_quit_early": "You decided to end the game—thanks for playing!",
-      "user_won": "You rocked the tournament! 🏆",
-      "user_lost": "The Computer prevailed this time. You'll get 'em next time!",
-      "user_stats_intro": "Welcome to your friendly Hall of Fame! 😊",
+      "continue_round_win": "Press Enter for the next exciting round, or 'q' for a quick rest",
+      "continue_round_tie": "Press Enter to replay the round, or 'q' to pause",
+      "user_quit_early": "All done for now—great games, see you soon!",
+      "user_won": "🎉 Congratulations! You won the tournament! 🎉",
+      "user_lost": "Computer clinched the win—but your next victory is just around the corner!",
+      "user_stats_intro": "🌟 Hall of Fame 🌟 —Let’s celebrate your achievements!",
       "sort_table": [
-        "Pick how you'd like to sort:",
-        "Enter w for most wins",
-        "Enter g for most games played",
-        "Enter p for best win percentage",
-        "Enter r for lowest rankings",
-        "Enter q to return to the menu"
+        "Sort your stats any way you like:",
+        "w → top win counts",
+        "g → most games played",
+        "p → highest win percentages",
+        "r → players climbing their way up",
+        "q → back to the menu"
       ],
-      "sort_table_error": "Oops! Please choose w, g, p, r or q."
+      "sort_table_error": "That choice isn’t valid. Go for w, g, p, r or q"
     },
+  
     "Aggressive": {
       "intro": [
-        "Listen up! This is the Rock Paper Scissors showdown!",
-        "\tHit n to start a new game NOW",
-        "\tHit c to configure if you dare",
-        "\tHit h if you need baby steps on the rules",
-        "\tHit d to view your pathetic stats",
-        "\tHit q to quit (cowards welcome)"
+        "Yo, rookie! Welcome to Rock-Paper-Scissors-Lizard-Spock—try not to embarrass yourself.",
+        "\tPress n if you dare start a new game",
+        "\tPress c if you think tweaking settings will help you win",
+        "\tPress h if you need the baby-rules explained again",
+        "\tPress d to ogle your mediocre stats",
+        "\tPress q to quit before the humiliation begins"
       ],
-      "intro_error": "Wrong choice! Pick one of h, c, n, s or q—do it right!",
-      "new_game_intro": "Game on! You vs Computer—no mercy!",
+      "intro_error": "Wrong key! Choose h, c, n, s or q—if that isn’t too hard.",
+      "new_game_intro": "New game: you vs. Computer. Spoiler—Computer’s not impressed.",
       "new_round_intro": "Round ",
-      "human_move_choose": "Make your move—fast!",
-      "human_move_error": "Invalid! Choose from the given options NOW!",
-      "incorrect_validation_method": "That's not how you validate—fix it!",
-      "user_move": "You chose: ",
-      "computer_move": "Computer chose: ",
-      "tie": "Tie? Pathetic.",
-      "user_wins": "You win—this time!",
-      "computer_wins": "Computer crushes you!",
+      "human_move_choose": "Choose your move—let’s see that ‘strategy’ of yours:",
+      "human_move_error": "Really? That’s not even an option. Try again, champ:",
+      "incorrect_validation_method": "Validation method unknown—just like your chances of winning.",
+      "user_move": "You flailed with: ",
+      "computer_move": "Computer expertly selected: ",
+      "tie": "A tie? Luck’s the only thing saving you.",
+      "user_wins": "What?! You actually won this round. Don’t get cocky.",
+      "computer_wins": "Computer wins—order is restored.",
       "help_screen_intro": [
-        "Help Screen: Pay attention!",
-        "Read or stay clueless."
+        "Help Screen—for players who forgot how to count to five.",
+        "Pay attention this time."
       ],
-      "moves_menu": "Move options—choose wisely:",
+      "moves_menu": "Available moves (try to remember them):",
       "additional_options": [
-        "Extra commands:",
-        "Enter c to tweak AI",
-        "Enter s to see your sorry history",
-        "Enter q to bail out",
-        "During a game, enter h for the rules",
-        "During a game, enter q to quit"
+        "Extra options, if you can handle multitasking:",
+        "Main menu • c → change settings (maybe pick Easy Mode?)",
+        "Main menu • s → view stats (I’ll wait for your excuses)",
+        "Main menu • q → rage-quit before round one",
+        "In-game • h → re-read the rules your goldfish memory lost",
+        "In-game • q → quit mid-game (classic move)"
       ],
-      "exit_help": "Enter q to get back to the main menu—hurry up!",
-      "exit_game": "Quit? Fine. Come back when you’re ready to win.",
+      "exit_help": "Press q to crawl back to the main menu",
+      "exit_game": "Running away already? Come back when you grow some confidence.",
       "config_screen_intro": [
-        "Config Screen—get it right!",
-        "Adjust your settings if you can."
+        "Configuration—because clearly you need every advantage.",
+        "Tweak these if you think it’ll help."
       ],
       "config_screen_options": [
-        "\tEnter p to pick AI Personality",
-        "\tEnter r to set rounds",
-        "\tEnter n to name your player",
-        "\tEnter m to change mode",
-        "\tEnter g to swap history file",
+        "\tEnter p to switch the AI’s personality—though none of them will go easy on you.",
+        "\tEnter r to lower the rounds so defeat comes faster.",
+        "\tEnter n to change your name—perhaps to ‘Loser’?",
+        "\tEnter m to pick ‘no draw’ mode, so I beat you every time.",
+        "\tEnter g to set a history file—yes, it will log every loss.",
         "",
-        "\tEnter q to ditch this menu",
+        "\tOr press q to scurry back to safety.",
         "",
-        "\t(Pro tip: editing the config file directly is for pros—don’t break it!)"
+        "\tSure, edit rps_config directly—break the game and save us both time."
       ],
       "config_screen_invalid_selection": [
-        "Invalid—choose a valid option now!"
+        "Not on the list. Read properly:"
       ],
-      "save_config_exit": "Changes saved—start over to see them!",
+      "save_config_exit": "Fine. Settings saved. Restart and try failing again.",
       "play_tournament_again": [
-        "Ready for another? Enter yes(y) or no(n)", "No? Back to menu!"
+        "Another beating?",
+        "yes(y) to continue, no(n) if you’ve had enough"
       ],
       "play_tournament_invalid_input": [
-        "Invalid input! yes(y) or no(n)? Try again!"
+        "Incomprehensible input.",
+        "Type yes(y) or no(n)—it’s not rocket science."
       ],
-      "continue_round_win": "Enter to keep going, enter 'q' to quit—your choice!",
-      "continue_round_tie": "Enter to retry, enter 'q' to quit—decide!",
-      "user_quit_early": "You copped out early—pathetic!",
-      "user_won": "You barely won—don’t get cocky!",
-      "user_lost": "You lost—better luck next time!",
-      "user_stats_intro": "Hall of Fame (look and cringe):",
+      "continue_round_win": "Hit Enter for your next thrashing, or 'q' to surrender",
+      "continue_round_tie": "Enter to redo the round, or 'q' to run away",
+      "user_quit_early": "User bailed—figures.",
+      "user_won": "Unbelievable—you won the tournament. Must be a glitch.",
+      "user_lost": "Computer dominates—balance of the universe restored.",
+      "user_stats_intro": "Hall of Fame (more like Wall of Shame—let’s see your numbers)",
       "sort_table": [
-        "Sort options:",
-        "w for highest wins",
-        "g for most games played",
-        "p for best win % (if any)",
-        "r for rock bottom",
-        "q to quit"
+        "Pick a stat view—try not to overthink it:",
+        "w → most wins (not yours)",
+        "g → most games played (aka ‘most losses’)",
+        "p → best win percentage (aspirational, huh?)",
+        "r → bottom of the barrel (your natural habitat)",
+        "q → slink back to the menu"
       ],
-      "sort_table_error": "Wrong! Choose w, g, p, r or q!"
+      "sort_table_error": "Invalid. Use w, g, p, r or q—this isn’t difficult."
     }
   }
   

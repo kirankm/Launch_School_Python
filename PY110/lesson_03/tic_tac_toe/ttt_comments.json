@@ -1,0 +1,7 @@
+{
+    "Normal": {
+        "game_intro" : "Welcome to Another Exciting Game of Tic Tac Toe",
+        "user_move_choose" : "Make Your Move",
+        "user_move_choose_invalid" : "Invalid Move!! Choose Again"
+    }
+}

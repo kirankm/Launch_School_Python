@@ -1,15 +1,14 @@
-CONSONANTS = 'bcdfghjklmnpqrstvwxyz'
 VOWELS = "aeiou"
 
 def sort_by_consonant_count(strings):
     strings.sort(key = count_max_adjacent_consonants, reverse = True)
     return strings
 
-# def sort_key(string):
-#     adj_consonants = count_max_adjacent_consonants(string)
-#     index_position = strings.index(string)
+def sort_key(string):
+    adj_consonants = count_max_adjacent_consonants(string)
+    index_position = strings.index(string)
     
-#     return [adj_consonants, len(string) - index_position]
+    return [adj_consonants, len(string) - index_position]
 
 def count_max_adjacent_consonants(string):
     VOWELS = 'aeiou'

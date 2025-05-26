@@ -1,0 +1,6 @@
+print(type(True))
+print(type('hello'))
+print(type([1, 2, 3, 'happy days']))
+print(type(142))
+print(type({1, 2, 3}))
+print(type(1.2345))

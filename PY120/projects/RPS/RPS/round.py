@@ -29,24 +29,10 @@ class Round:
         prompt(f"Let's Start ROUND {self._number}", prefix_space = True)
 
     def play(self):
-        while self.winner is None:
-            self._human_move = self._game.human.choose()
-            self._computer_move = self._game.computer.choose()
-            self._update_result()
-            self._display_result()
-            if (self.winner is None) and not(self._repeat_round()):
-                break
-
-    def _repeat_round(self):
-        msg = "Last round was a Tie. Would you like to Repeat it? Choose yes(y) or no(n): "
-        while True:
-            prompt(msg, prefix_space = True)
-            answer = input().lower()
-            if answer in ['yes' , 'y']:
-                return True
-            if answer in ['no', 'n']:
-                return False
-            msg = "Invalid Choice. Please choose either yes(y) or no(n): "
+        self._human_move = self._game.human.choose()
+        self._computer_move = self._game.computer.choose()
+        self._update_result()
+        self._display_result()
 
     def _update_result(self):
         if self._human_move > self._computer_move:
@@ -76,7 +62,6 @@ class Round:
         action = winning_move.get_verb(losing_move)
         prompt(f"{winning_move} {action} {losing_move}", prefix_space= True)
         prompt(f"{self.winner} wins the round")
-
 
 class SuddenDeathRound(Round):
     def __init__(self, game):

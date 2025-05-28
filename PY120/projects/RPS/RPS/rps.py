@@ -5,7 +5,6 @@ from utilities import clear_screen, prompt
 from round import Round, SuddenDeathRound
 from player import HumanPlayer, Computer
 
-
 class Banner:
     BANNER_WIDTH = shutil.get_terminal_size().columns
     def __init__(self, message):

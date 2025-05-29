@@ -1,9 +1,9 @@
 import shutil
 from time import sleep
 
-from utilities import clear_screen, prompt
+from utilities import clear_screen, prompt, load_json_file
 from round import Round, SuddenDeathRound
-from player import HumanPlayer, Computer
+from player import Player, HumanPlayer, Computer, R2D2, Daneel, HAL
 
 class Banner:
     BANNER_WIDTH = shutil.get_terminal_size().columns
@@ -17,23 +17,45 @@ class Banner:
         banner = [line1, line2, line3, line2, line1]
         print("\n".join(banner))
 
-class RPS:
-    def __init__(self, config = None):
-        self.config = config
-        self._human = HumanPlayer()
-        self._computer = Computer()
+class Game:
+    def __init__(self, game_name = None, config = None):
+        self._config = self._load_config(config)
+        self._human = HumanPlayer(self._config['player_name'])
+        self.computer = self._config['Computer_AI']
         self._rounds = []
         self._winner = None
+        self._game_name = "Rock Paper Scissor Spock Lizard"
         self._result = {'human':0, 'computer':0}
-        self._banner = Banner("Rock Paper Scissor Spock Lizard")
+        self._banner = Banner(self._game_name)
+
+    def _load_config(self, config):
+        if config is None:
+            return None
+        return load_json_file(config)
 
     @property
     def human(self):
         return self._human
-    
+
     @property
     def computer(self):
         return self._computer
+    
+    @computer.setter
+    def computer(self, value):
+        match value.upper():
+            case "R2D2":
+                self._computer = R2D2()
+            case "HAL":
+                self._computer = HAL()
+            case "DANEEL":
+                self._computer = Daneel(self)
+            case _:
+                self._computer = Computer(value)
+
+    @property
+    def rounds(self):
+        return self._rounds
     
     @property
     def winner(self):
@@ -70,7 +92,7 @@ class RPS:
 
     def _display_welcome_message(self):
         clear_screen(self._banner)
-        msg = "Let's start a new game of Rock Paper Scissors Lizard Spock!"
+        msg = f"Let's start a new game of {self._game_name}!"
         prompt(msg, prefix_space= True)
 
     def start_new_round(self):
@@ -154,7 +176,7 @@ class RPS:
         new_round.play()
 
     def _display_goodbye_message(self):
-        msg = "Thanks for playing Rock Paper Scissors Lizard Spock. Goodbye!"
+        msg = f"Thanks for playing {self._game_name}. Goodbye!"
         prompt(msg, prefix_space= True)
 
     def display_summary(self):
@@ -170,4 +192,7 @@ class RPS:
         prompt(f"{self.computer} won {computer_wins} games")
         if total_games > human_wins + computer_wins:
             prompt(f"{total_games - (human_wins + computer_wins)} games were tied.")
-RPS().play()
+
+game_name = "Rock Paper Scissor Lizard Spock"            
+config_path = "rps_config.json"
+Game(game_name, config_path).play()

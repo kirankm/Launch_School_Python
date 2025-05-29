@@ -38,10 +38,22 @@ class Player:
         return self._name
 
 class HumanPlayer(Player):
-    def __init__(self):
+    def __init__(self, name):
         super().__init__()
-        self._name = "Kiran"
+        self.name = name
         self.type = 'human'
+
+    @property 
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, name):
+        if not isinstance(name, str):
+            name = str(name)
+        if len(name.strip()) == 0:
+            raise ValueError("Empty strings not alowed for name")
+        self._name = name
 
     def _get_choose_msg(self):
         choices = self.__class__.CHOICES
@@ -65,9 +77,9 @@ class HumanPlayer(Player):
         return self.move
 
 class Computer(Player):
-    def __init__(self):
+    def __init__(self, name = "Computer"):
         super().__init__()
-        self._name = "HAL 9000"
+        self._name = name
         self.type = 'computer'
 
     def choose(self):
@@ -75,6 +87,36 @@ class Computer(Player):
         choice = random.choice(options)
         self.move = Move(choice)
         return self.move
+    
+class R2D2(Computer):
+    def __init__(self):
+        super().__init__()
+        self._name = "R2D2"
+
+    def choose(self):
+        return Move("ROCK")
+
+class HAL(Computer):
+    def __init__(self):
+        super().__init__()
+        self._name = "HAL"
+        self.type = 'computer'
+
+    def choose(self):
+        if random.random() <= .75:
+            return Move("SCISSORS")
+        return super().choose()
+
+class Daneel(Computer):
+    def __init__(self, game):
+        super().__init__()
+        self._name = "Daneel"
+        self._game = game
+
+    def choose(self):
+        if len(self._game.rounds) == 1:
+            return super().choose()
+        return self._game.rounds[-2].human_move
 
 class Move:
     MOVE_RULES = {

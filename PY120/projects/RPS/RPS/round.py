@@ -10,6 +10,10 @@ class Round:
         self._computer_move = None
 
     @property
+    def human_move(self):
+        return self._human_move
+    
+    @property
     def winner(self):
         return self._winner
     

@@ -97,9 +97,10 @@ class Game:
         self._display_current_settings()
 
     def _display_current_settings(self):
-        prompt(f"Human Player is {self.human}")
+        prompt(f"Human Player is {self.human}", prefix_space= True)
         prompt(f"Computer Player is {self.computer}")
         prompt("Use the config file to change these settings")
+        prompt("Set Computer_AI as R2D2, HAL or Daneel to see other playing styles")
 
     def _start_new_round(self):
         round_number = len(self._rounds) + 1

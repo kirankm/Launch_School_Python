@@ -1,0 +1,47 @@
+{
+    "main_menu" : {
+        "h" : "view the help screen",
+        "c" : "view and edit the game configuration",
+        "n" : "start a new game",
+        "d" : "display your stats",
+        "q" : "quit the game"
+    },
+    "config_menu" : {
+        "n" : {
+            "desc" : "edit the name of the player",
+            "curr_val" : "Kiran",
+            "type" : "string"
+        },
+        "c" : {
+            "desc" : "edit the name of the computer",
+            "curr_val" : "HAL",
+            "type" : "string", 
+            "options" : {
+                "special_values" : [
+                    "HAL 9000",
+                    "Carlsen",
+                    "Fischer",
+                    "Kasparov"
+                ]
+            }
+        },
+        "w" : {
+            "desc" : "edit the no of wins required to win the tournament",
+            "curr_val" : 5,
+            "type" : "int"
+        },
+        "s" : {
+            "desc" : "edit whether sudden death round is allowed or not",
+            "curr_val" : true,
+            "type" : "boolean"
+        },
+        "h" : {
+            "desc" : "edit the location of the game history file",
+            "curr_val" : "history.json",
+            "type" : "path"
+        }
+    },
+    "game_rules" : {
+        
+    }
+}

@@ -51,7 +51,11 @@ class MainMenu(Menu):
             case 'n':
                 self._game.tournament.play()
             case 'h':
-                self._game.display_help()
+                while True:
+                    self._game.display_help()
+                    if self._game.listen_for_keys('q'):
+                        break
+                self.display()
             case 'c':
                 self._game.config_menu.display()
             case 'd':
@@ -62,7 +66,7 @@ class MainMenu(Menu):
 class ConfigMenu(Menu):
     def __init__(self, new_game, options):
         super().__init__(new_game, options)
-    
+
     def _display_intro(self):
         line_1 = f"Welcome to the {self._game.name} Config Screen"
         line_2 = "Here you can edit the followings settings in the game"

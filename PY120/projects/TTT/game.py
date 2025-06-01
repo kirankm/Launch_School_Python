@@ -9,6 +9,10 @@ class Game:
         self._config_menu = ConfigMenu(self, self.config['config_menu'])
         self._name = name
 
+    def listen_for_keys(self, key_list):
+        user_key = input()
+        return user_key if user_key in list(key_list) else False
+    
     @property
     def name(self):
         return self._name.title()
@@ -41,8 +45,12 @@ class Game:
         self.main_menu.display()
 
     def display_help(self):
-        pass
-
+        clear_screen(self.name)
+        no_help_text = "No help file given"
+        help_text = self.config.get("game_rules", no_help_text)
+        prompt(help_text)
+        prompt("Press q to go back to the main menu")
+    
     def display_stats(self):
         pass
 

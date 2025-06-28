@@ -1,4 +1,44 @@
 {
-    "player_name":"Kiran",
-    "Computer_AI":"Daneel"
+    "main_menu" : {
+        "h" : "view the help screen",
+        "c" : "view and edit the game configuration",
+        "n" : "start a new game",
+        "d" : "display your stats",
+        "q" : "quit the game"
+    },
+    "config_menu" : {
+        "player_name" : {
+            "desc" : "edit the name of the player",
+            "curr_val" : "Kiran",
+            "type" : "string",
+            "shortcut" : "n"
+        },
+        "computer_name" : {
+            "desc" : "edit the name of the computer.",
+            "curr_val" : "HAL",
+            "type" : "string",
+            "shortcut" : "c",
+            "intro_text" : "Give the value for the computer name. Set name as Daneel, HAL, or R2D2 to see different playing styles."
+        },
+        "wins_required" : {
+            "desc" : "edit the no of wins required to win the tournament",
+            "curr_val" : 5,
+            "type" : "int",
+            "shortcut" : "w"
+        },
+        "sudden_death" : {
+            "desc" : "edit whether sudden death round is allowed or not",
+            "curr_val" : true,
+            "type" : "boolean",
+            "shortcut" : "s"
+        },
+        "history_file_path" : {
+            "desc" : "edit the location of the game history file",
+            "curr_val" : "history.json",
+            "type" : "path",
+            "shortcut" : "h"
+        }
+    },
+    "game_rules" : "🧠 Rock Paper Scissors Lizard Spock — Help\n\n🎮 Game Rules:\n\nEach move beats two others and loses to two. Here's how:\n\n- Scissors cuts Paper\n- Paper covers Rock\n- Rock crushes Lizard\n- Lizard poisons Spock\n- Spock smashes Scissors\n- Scissors decapitates Lizard\n- Lizard eats Paper\n- Paper disproves Spock\n- Spock vaporizes Rock\n- Rock crushes Scissors\n\n✋ Valid Inputs:\n\nr   -> Rock\np   -> Paper\ns   -> Scissors\nl   -> Lizard\nsp  -> Spock\nq   -> Quit the game\nh   -> Show this help screen again\n\nYou can enter the letter(s) shown above to play your move."
+
 }

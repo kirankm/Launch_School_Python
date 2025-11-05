@@ -5,7 +5,8 @@ app = Flask(__name__)
 @app.template_filter('in_paragraphs')
 def in_paragraphs(text):
    para_text = text.split('\n\n')
-   return '\n'.join([f'<p>{para}</p>' for para in para_text])
+   return '\n'.join([f'<p id={index+1}>{para}</p>' for index, para in 
+                                                    enumerate(para_text)])
 
 @app.before_request
 def load_contents():
@@ -40,13 +41,30 @@ def search():
                                             contents = g.contents)
 
 def search_term_in_contents(search_term):
-    results = []
+    results = {}
     for index, chapter in enumerate(g.contents):
         with open(f'book_viewer/data/chp{index + 1}.txt') as f:
             chapter_content = f.read()
         if chapter_content.find(search_term) != -1:
-            results.append(chapter)
+            paragraphs = get_paragraph_with_search_term(chapter_content, 
+                                                        search_term)
+            results[chapter] = {}
+            results[chapter]['index'] = index + 1
+            results[chapter]['paragraphs'] = paragraphs 
     return results
+
+def get_paragraph_with_search_term(content, search_term):
+    sel_paras = {}
+    all_paras = content.split('\n\n')
+    for index, para in enumerate(all_paras):
+        if para.find(search_term) != -1:
+            emboldened_para = embolden_term_in_para(para, search_term) 
+            sel_paras[index] = emboldened_para
+    return sel_paras
+    
+def embolden_term_in_para(para, term):
+    return para.replace(term, f'<strong>{term}</strong>')
+
 
 @app.template_filter('get_chapter_url')
 def get_chapter_url(chapter_name):

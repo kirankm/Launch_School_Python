@@ -13,9 +13,14 @@
         {% if results %}
             <h3 class="content-subhead">Results for '{{query}}' </h3>
             <ul>
-                {% for result in results %}
+                {% for chapter, data in results.items() %}
                     <li>
-                        <a href= "{{ result | get_chapter_url| safe }}">{{ result }}</a>
+                        <h4>{{ chapter }}</h4>
+                        <ul>
+                            {% for para_index, paras in data.paragraphs.items() %}
+                                <li> <a href = "/chapters/{{ data.index }}#{{ para_index }}">{{paras | safe}} </a></li>
+                            {% endfor %}
+                        </ul>
                     </li>
                 {% endfor %}
             </ul>

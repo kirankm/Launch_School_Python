@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+<body>
+{% block content %}
+    <h2 class="content-subhead">Search</h2>
+
+    <form action="{{ url_for('search') }}" method="get">
+    <input name="query" value="{{ query }}" />
+    <button type="submit">Search</button>
+    </form>
+
+    {% if query %}
+        {% if results %}
+            <h3 class="content-subhead">Results for '{{query}}' </h3>
+            <ul>
+                {% for result in results %}
+                    <li>
+                        <a href= "/chapter">{{ result }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <h4 class="content-subhead"> Sorry no matches found </h4>
+        {% endif %}
+    {% endif %}
+{% endblock %}

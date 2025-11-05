@@ -1,0 +1,185 @@
+#!/usr/bin/env python
+
+import psycopg2
+from psycopg2 import extras
+import sys
+from textwrap import dedent
+from datetime import datetime
+from contextlib import contextmanager
+
+class CLI:
+    def __init__(self, db_name):
+        self.application = ExpenseData(db_name)
+
+    def _display_help(self):
+        help_comment = dedent('''
+            An expense recording system
+            Commands:
+
+            add AMOUNT MEMO [DATE] - record a new expense
+            clear - delete all expenses
+            list - list all expenses
+            delete NUMBER - remove expense with id NUMBER
+            search QUERY - list expenses with a matching memo field
+        ''').strip('\n')
+        print(help_comment)
+
+    def run(self, arguments):
+        command = arguments.pop(0) if arguments else None
+        match command:
+            case 'list':
+                self.application.list_expenses()
+            case 'add':
+                if len(arguments) < 2:
+                    print("You must provide an Amount and a Description for your expense")
+                else:
+                    amount = arguments[0]
+                    memo = arguments[1]
+                    if len(arguments) > 2:
+                        date = arguments[2]
+                    else:
+                        date = datetime.now()
+                    self.application.add_expense(amount, memo, date)
+            case 'search':
+                if len(arguments) < 1:
+                    print("You must give some search term")
+                else:
+                    search_term = arguments[0]
+                    self.application.search_expenses(search_term)
+            case 'delete':
+                if len(arguments) < 1:
+                    print("You must give some id to delete")
+                else:
+                    delete_id = arguments[0]
+                    self.application.delete_expense(delete_id)
+            case 'clear':
+                user_input = input("This will remove all expenses. Are you sure? (enter y to confirm):")
+                if user_input.lower() in ["y", "yes"]:
+                    self.application.delete_all_expenses()
+                    print("All expenses have been deleted.")
+            case _:
+                self._display_help()
+
+
+class ExpenseData:
+    def __init__(self, db_name):
+        self._db_name = db_name
+        self._setup_schema()
+
+    @property
+    def db_name(self):
+        return self._db_name
+
+    @contextmanager
+    def database_connect(self, db_name):
+        connection = psycopg2.connect(dbname = db_name)
+        try:
+            with connection: 
+                yield connection
+        finally:
+            connection.close()
+
+    def _run_query(self, query, query_values = None, fetch = False):
+        with self.database_connect(db_name = self.db_name) as connection:
+            with connection.cursor(cursor_factory = extras.DictCursor) as cursor:
+                cursor.execute(query, query_values)
+                if fetch:
+                    rows = cursor.fetchall()
+                    return rows
+            
+    def _setup_schema(self):
+        table_exists_query = '''
+        SELECT COUNT(*) FROM information_schema.tables
+        WHERE table_schema = 'public'
+            AND table_name = 'expenses';
+        '''
+        count = self._run_query(table_exists_query, fetch = True)
+        if not count[0][0]:
+            self._create_expense_table()
+
+    def _create_expense_table(self):
+        create_table_query = '''
+        CREATE TABLE expenses (
+            id serial PRIMARY KEY,
+            amount numeric(6,2) NOT NULL CHECK(amount > 0),
+            memo text NOT NULL,
+            created_on timestamp DEFAULT now()
+        );
+        '''
+        self._run_query(create_table_query)
+
+    def _get_expenses(self):
+        query = "SELECT * FROM expenses ORDER BY created_on"
+        rows = self._run_query(query, fetch = True)
+        return rows
+
+    def _search_in_expenses(self, search_term):
+        query = f"SELECT * FROM expenses WHERE memo ILIKE '%{search_term}%' ORDER BY created_on"
+        rows = self._run_query(query, fetch = True)
+        return rows
+
+    def _search_id_in_expenses(self, search_id):
+        query = f"SELECT * FROM expenses WHERE id = {search_id}"
+        rows = self._run_query(query, fetch = True)
+        return rows
+
+    def _display_count(self, expense_cnt):
+        expense_word = "expense" if expense_cnt == 1 else "expenses"
+        connecting_word = "is" if expense_cnt == 1 else "are"
+        count_word = "no" if expense_cnt == 0 else expense_cnt
+        print(f"There {connecting_word} {count_word} {expense_word}.")
+
+    def _display_expenses(self, expenses):
+        for row in expenses:
+            id, amount, memo, created_on = row
+            id = f'{id}'.rjust(2)
+            amount = f'{amount}'.rjust(6)
+            created_on = created_on.date()
+            print(f'{id}| {created_on}| {amount}| {memo}')
+
+    def _display_total(self, expenses):
+        if len(expenses) > 0:
+            print("-" * 50)
+            amt = sum([row[1] for row in expenses])
+            print("Total", f"{amt}".rjust(25))
+
+    def list_expenses(self):
+        expenses = self._get_expenses()
+        self._display_count(len(expenses))
+        self._display_expenses(expenses)
+        self._display_total(expenses)
+
+    def search_expenses(self, search_term = None):
+        expenses = self._search_in_expenses(search_term)
+        self._display_count(len(expenses))
+        self._display_expenses(expenses)
+        self._display_total(expenses)
+
+    def add_expense(self, dollar_amount, description, date):
+        insert_query = f"""
+        INSERT INTO expenses
+        (amount, memo, created_on) VALUES
+        (%s, %s, %s);
+        """
+        insert_values = (dollar_amount, description, date)
+        self._run_query(insert_query, query_values = insert_values)
+
+    def delete_expense(self, delete_id):
+        is_id_present = len(self._search_id_in_expenses(delete_id)) > 0
+        if not is_id_present:
+            print("Please give a valid id. Current ID is not present in DB")
+            return None
+        delete_query = f"""
+        DELETE FROM expenses
+        WHERE id = (%s);
+        """
+        delete_values = (delete_id,)
+        self._run_query(delete_query, query_values = delete_values)
+
+    def delete_all_expenses(self):
+        delete_query = "DELETE FROM expenses"
+        self._run_query(delete_query)
+
+if __name__ == "__main__":
+    cli = CLI('expenses')
+    cli.run(sys.argv[1:])

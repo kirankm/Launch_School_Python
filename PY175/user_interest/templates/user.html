@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3> Hobbies and Interests of {{ user_name }} </h3>
+    <h4> User Details</h4>
+    <div><strong>Email</strong>: {{ user_data['email'] }}</div>
+    <div><strong>Interests</strong>: {{ user_data['interests'] | display_interest | safe }}</div>
+{% endblock %}

@@ -3,10 +3,11 @@ import yaml
 
 app = Flask(__name__)
 
+with open('users.yaml', 'r') as f:
+    user_interest = yaml.safe_load(f)
+
 @app.before_request
 def load_user_data():
-    with open('users.yaml', 'r') as f:
-        user_interest = yaml.safe_load(f)
     g.contents = user_interest 
 
 @app.route('/')
@@ -28,6 +29,9 @@ def display_interest(interest_list):
 
 @app.route('/<user_name>')
 def user(user_name):
+    if user_name not in g.contents:
+        return redirect(url_for('users'))
+
     user_data = g.contents[user_name]
     rem_users = [user for user in g.contents.keys() if user != user_name]
     return render_template(
@@ -40,8 +44,7 @@ def user(user_name):
 
 def data_summary():
     user_count = len(g.contents)
-    interest_cnt = len([interest for user in g.contents.values() 
-                for interest in user['interests']])
+    interest_cnt = sum([len(user_data['interests']) for user_data in g.contents.values()])
     return (user_count, interest_cnt)
 
 if __name__ == '__main__':

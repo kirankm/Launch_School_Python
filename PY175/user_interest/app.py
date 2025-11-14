@@ -32,6 +32,7 @@ def user(user_name):
     rem_users = [user for user in g.contents.keys() if user != user_name]
     return render_template(
         'user.html',
+        user_name = user_name,
         user_data = user_data,
         rem_users = rem_users,
         data_summary = data_summary() 

@@ -58,18 +58,12 @@ def get_paragraph_with_search_term(content, search_term):
     all_paras = content.split('\n\n')
     for index, para in enumerate(all_paras):
         if para.find(search_term) != -1:
-            emboldened_para = embolden_term_in_para(para, search_term) 
-            sel_paras[index] = emboldened_para
+            sel_paras[index] = para
     return sel_paras
     
-def embolden_term_in_para(para, term):
-    return para.replace(term, f'<strong>{term}</strong>')
-
-
-@app.template_filter('get_chapter_url')
-def get_chapter_url(chapter_name):
-    chapter_index = g.contents.index(chapter_name)
-    return f"/chapters/{chapter_index + 1}"
+@app.template_filter('highlight')
+def highlight(text, term):
+    return text.replace(term, f'<strong>{term}</strong>')
 
 @app.errorhandler(404)
 def redirect_to_home(_error):

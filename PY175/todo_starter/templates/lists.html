@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  {% if lists %}
+    <ul id="lists">
+        {% for item in lists %}
+        <li>
+            <a>
+                <h2>{{ item.title }}</h2>
+                <p>{{ item.todos | length }}</p>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+  {% else %}
+    <p id="no_list">You don't have any todo lists. Why not create one?</p>
+  {% endif %}
+{% endblock %}
+
+{% block header_links %}
+  <a class="add" href="{{ url_for('add_todo_list') }}">New List</a>
+{% endblock %}
